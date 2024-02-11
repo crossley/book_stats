@@ -456,7 +456,7 @@ ezANOVA(data=d,
 
 ## Two-way ANOVA in R using real data
 ```{r}
-d <- fread('https://crossley.github.io/cogs2020/data/mis/mis_data.csv')
+d <- fread('https://crossley.github.io/book_stats/data/mis/mis_data.csv')
 
 d <- d[phase=='Base', .(subject, group, target, error)]
 d[, group := factor(group)]

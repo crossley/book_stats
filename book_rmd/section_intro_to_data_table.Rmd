@@ -292,7 +292,7 @@ dt
 ```{r}
 # Location of the csv file
 # can be on the internet or on your local machine
-f <- 'https://crossley.github.io/cogs2020/data/maze/maze.csv'
+f <- 'https://crossley.github.io/book_stats/data/maze/maze.csv'
 
 # use the fread function
 d <-fread(f)
@@ -324,14 +324,14 @@ DT
 * The following `data.table` is in **long** format:
 
 ```{r, echo=F}
-d <- fread('https://crossley.github.io/cogs2020/data/maze/d_long.csv')
+d <- fread('https://crossley.github.io/book_stats/data/maze/d_long.csv')
 d
 ```
 
 * The following `data.table` is in **wide** format:
 
 ```{r, echo=F}
-d <- fread('https://crossley.github.io/cogs2020/data/maze/d_wide.csv')
+d <- fread('https://crossley.github.io/book_stats/data/maze/d_wide.csv')
 d
 ```
 

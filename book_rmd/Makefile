@@ -7,9 +7,8 @@ book:
 
 # Target to clean up intermediate files
 clean:
+	rm -rf ../*.html ../style.css reference-keys.txt search_index.json
 	rm bookdown_files.Rmd
 	rm -rf _bookdown_files
-	rm -rf ../*.html
 
 .PHONY: all book clean
-

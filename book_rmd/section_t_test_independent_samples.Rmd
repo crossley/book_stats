@@ -27,7 +27,7 @@ library(ggplot2)
 rm(list = ls())
 
 d <- fread(
-  'https://crossley.github.io/cogs2020/data/criterion_learning/crit_learn.csv')
+  'https://crossley.github.io/book_stats/data/criterion_learning/crit_learn.csv')
 
 d <- d[cnd %in% c('Delay', 'Short ITI', 'Long ITI')]
 

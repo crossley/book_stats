@@ -339,7 +339,7 @@ ezANOVA(
 ## Example 2: Criterion learning data
 
 ```{r}
-fp <- 'https://crossley.github.io/cogs2020/data/criterion_learning/crit_learn.csv'
+fp <- 'https://crossley.github.io/book_stats/data/criterion_learning/crit_learn.csv'
 
 d <- fread(fp)
 

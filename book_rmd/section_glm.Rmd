@@ -133,7 +133,7 @@ $$
 
 ```{r message=F}
 
-d <- fread('https://crossley.github.io/cogs2020/data/criterion_learning/crit_learn.csv')
+d <- fread('https://crossley.github.io/book_stats/data/criterion_learning/crit_learn.csv')
 
 ## We will answer this question: Are there significant differences between the
 ## mean `t2c` per subject betweem conditions? For simplicity, only consider the

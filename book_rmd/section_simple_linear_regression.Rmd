@@ -152,7 +152,7 @@ library(ggplot2)
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/eeg/epochs.txt')
+d <- fread('https://crossley.github.io/book_stats/data/eeg/epochs.txt')
 d[, V1 := NULL]
 
 ## convert from wide to long format
@@ -193,7 +193,7 @@ library(ggplot2)
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/mis/mis_data.csv')
+d <- fread('https://crossley.github.io/book_stats/data/mis/mis_data.csv')
 
 ## give subjects in different groups unique numbers
 d[group==1, subject := subject + 10]

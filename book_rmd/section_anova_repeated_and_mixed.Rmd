@@ -178,7 +178,7 @@ ezANOVA(
 ### Real data
 ```{r}
 ## Consider the MIS data
-d <- fread('https://crossley.github.io/cogs2020/data/mis/mis_data.csv')
+d <- fread('https://crossley.github.io/book_stats/data/mis/mis_data.csv')
 
 ## We will answer this question:
 
@@ -367,7 +367,7 @@ library(ez)
 ## clean slate
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/mis/mis_data.csv')
+d <- fread('https://crossley.github.io/book_stats/data/mis/mis_data.csv')
 
 ## We will answer this question:
 ## Are there significant differences in the mean error per

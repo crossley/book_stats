@@ -18,7 +18,7 @@ each `rat` takes to complete each `run` of each `maze`.
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/maze/maze.csv')
+d <- fread('https://crossley.github.io/book_stats/data/maze/maze.csv')
 
 ```
 
@@ -57,7 +57,7 @@ The resulting `data.table` contains the following columns:
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/criterion_learning/crit_learn.csv')
+d <- fread('https://crossley.github.io/book_stats/data/criterion_learning/crit_learn.csv')
 
 ```
 
@@ -87,7 +87,7 @@ The resulting `data.table` contains the following columns:
 
 ## NHP data
 The data file can be found here:
-https://crossley.github.io/cogs2020/data//nhp_cat_learn/ii_gabor.csv
+https://crossley.github.io/book_stats/data//nhp_cat_learn/ii_gabor.csv
 
 This data file contains the results from a monkey performing a category learning
 experiment similar to those that we have seen a handful of times already in this
@@ -99,7 +99,7 @@ A or category B.
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data//nhp_cat_learn/ii_gabor.csv')
+d <- fread('https://crossley.github.io/book_stats/data//nhp_cat_learn/ii_gabor.csv')
 
 col_names <- c(
   'cat',
@@ -145,14 +145,14 @@ d[, trial := 1:.N]
   the other group were professional surgeons.
 
 - The data file can be found here:
-  https://crossley.github.io/cogs2020/data/mis/mis_data.csv
+  https://crossley.github.io/book_stats/data/mis/mis_data.csv
 
 
 ```{r message=F}
 
 rm(list=ls())
 
-d <- fread('https://crossley.github.io/cogs2020/data/mis/mis_data.csv')
+d <- fread('https://crossley.github.io/book_stats/data/mis/mis_data.csv')
 
 ```
 
@@ -205,13 +205,13 @@ within this $[-0.1s, 0.3s]$ interval.
 </center>
 
 The data can be located here:
-`https://crossley.github.io/cogs2020/data/eeg/epochs.txt`
+`https://crossley.github.io/book_stats/data/eeg/epochs.txt`
 
 ```{r message=F}
 
 rm(list=ls())
 
-## d <- fread('https://crossley.github.io/cogs2020/data/eeg/epochs.txt')
+## d <- fread('https://crossley.github.io/book_stats/data/eeg/epochs.txt')
 
 ```
 
