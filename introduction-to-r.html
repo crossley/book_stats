@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Introduction to R | Data analysis and statistics for cognitive neuroscience</title>
+  <meta name="description" content="2 Introduction to R | Data analysis and statistics for cognitive neuroscience" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Introduction to R | Data analysis and statistics for cognitive neuroscience" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Introduction to R | Data analysis and statistics for cognitive neuroscience" />
+  
+  
+  
+
+<meta name="author" content="Matthew J. Crossley" />
+
+
+<meta name="date" content="2024-02-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to the book</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basics"><i class="fa fa-check"></i><b>2.1</b> Basics</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>2.2</b> Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-types"><i class="fa fa-check"></i><b>2.3</b> Data types</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numeric"><i class="fa fa-check"></i><b>2.3.1</b> <code>numeric</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#character"><i class="fa fa-check"></i><b>2.3.2</b> <code>character</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical"><i class="fa fa-check"></i><b>2.3.3</b> <code>logical</code></a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#factor"><i class="fa fa-check"></i><b>2.3.4</b> <code>factor</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#containers"><i class="fa fa-check"></i><b>2.4</b> Containers</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vector"><i class="fa fa-check"></i><b>2.4.1</b> <code>vector</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#list"><i class="fa fa-check"></i><b>2.4.2</b> <code>list</code></a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data.frame"><i class="fa fa-check"></i><b>2.4.3</b> <code>data.frame</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>2.5</b> Loops</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#for-loops"><i class="fa fa-check"></i><b>2.5.1</b> <code>for</code> loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#while-loops"><i class="fa fa-check"></i><b>2.5.2</b> <code>while</code> loops</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-flow"><i class="fa fa-check"></i><b>2.6</b> Conditional flow</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#custom-functions"><i class="fa fa-check"></i><b>2.7</b> Custom functions</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#inspect-existing-objects"><i class="fa fa-check"></i><b>2.8</b> Inspect existing objects</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#summary"><i class="fa fa-check"></i><b>2.9</b> Summary</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis and statistics for cognitive neuroscience</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-r" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter provides an introduction to R, covering basic
+concepts like defining variables, performing mathematical
+operations, and using built-in functions. It also introduces
+various data types (numeric, character, logical, and factor)
+and containers (vector, list, and data frame) in R, along
+with how to create and access their elements. It also covers
+control flow with for and while loops, conditional flow with
+if statements, and the creation of custom functions. Lastly,
+it discusses inspecting objects using functions like ls(),
+rm(), class(), str(), head(), tail(), and summary() to
+understand and manage the R environment.</p>
+<div id="basics" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Basics<a href="introduction-to-r.html#basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="co"># Use R as a calculator</span></span>
+<span id="cb1-2"><a href="introduction-to-r.html#cb1-2" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" tabindex="-1"></a><span class="co"># Store results in variables</span></span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="introduction-to-r.html#cb3-3" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-to-r.html#cb5-1" tabindex="-1"></a><span class="co"># Perform mathematical operations on variables</span></span>
+<span id="cb5-2"><a href="introduction-to-r.html#cb5-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb5-3"><a href="introduction-to-r.html#cb5-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span></span>
+<span id="cb5-4"><a href="introduction-to-r.html#cb5-4" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+</div>
+<div id="functions" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Functions<a href="introduction-to-r.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Functions are objects that take <em>arguments</em> as inputs,
+perform some operation on those inputs, and return the
+results.</p></li>
+<li><p><code>ls()</code> is a function that reports what objects (e.g.,
+variables you have defined) are in the current environment
+and therefore available for you to interact with.</p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;x&quot; &quot;y&quot;</code></pre>
+<ul>
+<li><p><code>rm()</code> is a function that can remove objects from the
+current environment.</p></li>
+<li><p>It takes several arguments. Type <code>?rm()</code> to see help
+information on how to use it.</p></li>
+<li><p>We will commonly combine <code>ls()</code> and <code>rm()</code> to remove all
+objects from the current environment. This is a good thing
+to do at the beginning of every new script you write.</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-r.html#cb9-1" tabindex="-1"></a><span class="co"># Remove all objects from the current R session.</span></span>
+<span id="cb9-2"><a href="introduction-to-r.html#cb9-2" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+</div>
+<div id="data-types" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Data types<a href="introduction-to-r.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="numeric" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> <code>numeric</code><a href="introduction-to-r.html#numeric" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introduction-to-r.html#cb10-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb10-2"><a href="introduction-to-r.html#cb10-2" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="character" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> <code>character</code><a href="introduction-to-r.html#character" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introduction-to-r.html#cb12-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&#39;a&#39;</span></span>
+<span id="cb12-2"><a href="introduction-to-r.html#cb12-2" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="logical" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> <code>logical</code><a href="introduction-to-r.html#logical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introduction-to-r.html#cb14-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb14-2"><a href="introduction-to-r.html#cb14-2" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+<div id="factor" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> <code>factor</code><a href="introduction-to-r.html#factor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A <code>factor</code> is a <em>categorical</em> data type. They are most
+often used to code for different conditions in an
+experiment.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introduction-to-r.html#cb16-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="introduction-to-r.html#cb16-2" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+</div>
+</div>
+<div id="containers" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Containers<a href="introduction-to-r.html#containers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vector" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> <code>vector</code><a href="introduction-to-r.html#vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Create a vector with the function <code>c()</code>.</p></li>
+<li><p>The elements of a <code>vector</code> must be of the same type.</p></li>
+<li><p>Access element <code>i</code> of <code>vector</code> <code>x</code> with square brackets
+(e.g., <code>x[i]</code>)</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction-to-r.html#cb18-1" tabindex="-1"></a><span class="co"># Create a vector with any three numbers you like.</span></span>
+<span id="cb18-2"><a href="introduction-to-r.html#cb18-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">3.14159</span>)</span>
+<span id="cb18-3"><a href="introduction-to-r.html#cb18-3" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 1.00000 2.00000 3.14159</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction-to-r.html#cb20-1" tabindex="-1"></a><span class="co"># Access the third element of x</span></span>
+<span id="cb20-2"><a href="introduction-to-r.html#cb20-2" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x[<span class="dv">3</span>]</span>
+<span id="cb20-3"><a href="introduction-to-r.html#cb20-3" tabindex="-1"></a>x3</span></code></pre></div>
+<pre><code>## [1] 3.14159</code></pre>
+</div>
+<div id="list" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> <code>list</code><a href="introduction-to-r.html#list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Create a list with the function <code>list()</code></p></li>
+<li><p>The elements of a <code>list</code> can be of different types.</p></li>
+<li><p>Access element <code>i</code> of <code>list</code> <code>x</code> with <em>double</em> square
+brackets (e.g., <code>x[[i]]</code>)</p></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction-to-r.html#cb22-1" tabindex="-1"></a><span class="co"># Create a three element list containing one numeric</span></span>
+<span id="cb22-2"><a href="introduction-to-r.html#cb22-2" tabindex="-1"></a><span class="co"># item, one `character` item, and one logical item.</span></span>
+<span id="cb22-3"><a href="introduction-to-r.html#cb22-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">3.14159</span>, <span class="st">&#39;pi&#39;</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb22-4"><a href="introduction-to-r.html#cb22-4" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 3.14159
+## 
+## [[2]]
+## [1] &quot;pi&quot;
+## 
+## [[3]]
+## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introduction-to-r.html#cb24-1" tabindex="-1"></a><span class="co"># Access the third element of x</span></span>
+<span id="cb24-2"><a href="introduction-to-r.html#cb24-2" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x[[<span class="dv">3</span>]]</span>
+<span id="cb24-3"><a href="introduction-to-r.html#cb24-3" tabindex="-1"></a>x3</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="data.frame" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> <code>data.frame</code><a href="introduction-to-r.html#data.frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Create a <code>data.frame</code> with the function <code>data.frame()</code></li>
+</ul>
+<p>-<code>data.frame</code> is pretty close what you might think of as an
+excel spreadsheet.</p>
+<ul>
+<li>Access column <code>x</code> in <code>data.frame</code> <code>df</code> with the <code>$</code>
+operator (e.g., <code>df$x</code>).</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction-to-r.html#cb26-1" tabindex="-1"></a><span class="co"># Create vectors to later store in a data frame</span></span>
+<span id="cb26-2"><a href="introduction-to-r.html#cb26-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;I&#39;</span>, <span class="st">&#39;I&#39;</span>, <span class="st">&#39;I&#39;</span>, <span class="st">&#39;II&#39;</span>, <span class="st">&#39;II&#39;</span>, <span class="st">&#39;II&#39;</span>, <span class="st">&#39;III&#39;</span>, <span class="st">&#39;III&#39;</span>, <span class="st">&#39;III&#39;</span>, <span class="st">&#39;IV&#39;</span>, <span class="st">&#39;IV&#39;</span>, <span class="st">&#39;IV&#39;</span>)</span>
+<span id="cb26-3"><a href="introduction-to-r.html#cb26-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>, <span class="st">&#39;e&#39;</span>, <span class="st">&#39;f&#39;</span>, <span class="st">&#39;f&#39;</span>)</span>
+<span id="cb26-4"><a href="introduction-to-r.html#cb26-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">12</span>)</span>
+<span id="cb26-5"><a href="introduction-to-r.html#cb26-5" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="introduction-to-r.html#cb26-6" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
+<span id="cb26-7"><a href="introduction-to-r.html#cb26-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, z)</span>
+<span id="cb26-8"><a href="introduction-to-r.html#cb26-8" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      x y          z
+## 1    I a -1.6523276
+## 2    I a  0.2504072
+## 3    I b  2.0398057
+## 4   II b -0.3457887
+## 5   II c -0.8629809
+## 6   II c  1.2331722
+## 7  III d -0.1642727
+## 8  III d  1.1463085
+## 9  III e -1.0988434
+## 10  IV e -0.1129436
+## 11  IV f -0.9044868
+## 12  IV f -0.9991266</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introduction-to-r.html#cb28-1" tabindex="-1"></a><span class="co"># Access column x</span></span>
+<span id="cb28-2"><a href="introduction-to-r.html#cb28-2" tabindex="-1"></a>df<span class="sc">$</span>x</span></code></pre></div>
+<pre><code>##  [1] &quot;I&quot;   &quot;I&quot;   &quot;I&quot;   &quot;II&quot;  &quot;II&quot;  &quot;II&quot;  &quot;III&quot; &quot;III&quot; &quot;III&quot; &quot;IV&quot;  &quot;IV&quot;  &quot;IV&quot;</code></pre>
+</div>
+</div>
+<div id="loops" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Loops<a href="introduction-to-r.html#loops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="for-loops" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> <code>for</code> loops<a href="introduction-to-r.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>for</code> loops will run a chunk of code repeatedly for a
+fixed number of iterations.</p></li>
+<li><p>The general syntax of a <code>for</code> loop is as follows:</p></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction-to-r.html#cb30-1" tabindex="-1"></a><span class="cf">for</span>(x <span class="cf">in</span> y) {</span>
+<span id="cb30-2"><a href="introduction-to-r.html#cb30-2" tabindex="-1"></a>  <span class="co"># On the first iteration, `x` will take the value `y[1]`</span></span>
+<span id="cb30-3"><a href="introduction-to-r.html#cb30-3" tabindex="-1"></a>  <span class="co"># On the second iteration, `x` will take the value `y[2]`</span></span>
+<span id="cb30-4"><a href="introduction-to-r.html#cb30-4" tabindex="-1"></a>  <span class="co"># On the third iteration, `x` will take the value `y[3]`</span></span>
+<span id="cb30-5"><a href="introduction-to-r.html#cb30-5" tabindex="-1"></a>  <span class="co"># The loop will end after `x` has taken the value `y[length(y)]`</span></span>
+<span id="cb30-6"><a href="introduction-to-r.html#cb30-6" tabindex="-1"></a>  <span class="co"># That is, the loop will end when we have iterated through</span></span>
+<span id="cb30-7"><a href="introduction-to-r.html#cb30-7" tabindex="-1"></a>  <span class="co"># all elements in `y`</span></span>
+<span id="cb30-8"><a href="introduction-to-r.html#cb30-8" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>As an example suppose we want to print the numbers 1, 2, 3</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1" tabindex="-1"></a><span class="co"># dumb monkey way to print 1, 2, 3</span></span>
+<span id="cb31-2"><a href="introduction-to-r.html#cb31-2" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-r.html#cb33-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-r.html#cb35-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction-to-r.html#cb37-1" tabindex="-1"></a><span class="co"># smart monkey way to print 1, 2, 3</span></span>
+<span id="cb37-2"><a href="introduction-to-r.html#cb37-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
+<span id="cb37-3"><a href="introduction-to-r.html#cb37-3" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb37-4"><a href="introduction-to-r.html#cb37-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+</div>
+<div id="while-loops" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> <code>while</code> loops<a href="introduction-to-r.html#while-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><code>while</code> loops will run a chunk of code repeatedly over and
+over again until some <code>logical</code> condition is met.</p></li>
+<li><p>You have to be careful with these, because if your code
+never sets up a stopping condition, then the loop will
+execute until your computer turns to dust.</p></li>
+<li><p>The general syntax of a <code>for</code> loop is as follows:</p></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction-to-r.html#cb39-1" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb39-2"><a href="introduction-to-r.html#cb39-2" tabindex="-1"></a><span class="cf">while</span>(condition) {</span>
+<span id="cb39-3"><a href="introduction-to-r.html#cb39-3" tabindex="-1"></a>  <span class="co"># On the first iteration, `x` will take the value `y[1]`</span></span>
+<span id="cb39-4"><a href="introduction-to-r.html#cb39-4" tabindex="-1"></a>  <span class="co"># On the second iteration, `x` will take the value `y[2]`</span></span>
+<span id="cb39-5"><a href="introduction-to-r.html#cb39-5" tabindex="-1"></a>  <span class="co"># On the third iteration, `x` will take the value `y[3]`</span></span>
+<span id="cb39-6"><a href="introduction-to-r.html#cb39-6" tabindex="-1"></a>  <span class="co"># The loop will end only when `condition` is set to `FALSE`</span></span>
+<span id="cb39-7"><a href="introduction-to-r.html#cb39-7" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Lets again consider the example printing the numbers 1, 2,
+3</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="introduction-to-r.html#cb40-1" tabindex="-1"></a><span class="co"># dumb monkey way to print 1, 2, 3</span></span>
+<span id="cb40-2"><a href="introduction-to-r.html#cb40-2" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introduction-to-r.html#cb42-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introduction-to-r.html#cb44-1" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-r.html#cb46-1" tabindex="-1"></a><span class="co"># smart monkey way to print 1, 2, 3</span></span>
+<span id="cb46-2"><a href="introduction-to-r.html#cb46-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb46-3"><a href="introduction-to-r.html#cb46-3" tabindex="-1"></a><span class="cf">while</span>(x <span class="sc">&lt;</span> <span class="dv">4</span>) {</span>
+<span id="cb46-4"><a href="introduction-to-r.html#cb46-4" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb46-5"><a href="introduction-to-r.html#cb46-5" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="co"># without this line the loop would run forever</span></span>
+<span id="cb46-6"><a href="introduction-to-r.html#cb46-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+</div>
+</div>
+<div id="conditional-flow" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Conditional flow<a href="introduction-to-r.html#conditional-flow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Very often we will want to execute a chunk of code only in
+some situations (e.g., for a particular experiment
+condition) and we will want to run some other chunk of
+code in other situations.</p></li>
+<li><p>The primary method for doing this is to use <code>if</code>
+statements. The general syntax of an <code>if</code> statement is as
+follows:</p></li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-to-r.html#cb48-1" tabindex="-1"></a><span class="cf">if</span>(condition) {</span>
+<span id="cb48-2"><a href="introduction-to-r.html#cb48-2" tabindex="-1"></a>  <span class="co"># code to run if condition is TRUE</span></span>
+<span id="cb48-3"><a href="introduction-to-r.html#cb48-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb48-4"><a href="introduction-to-r.html#cb48-4" tabindex="-1"></a>  <span class="co"># code to run if condition is FALSE</span></span>
+<span id="cb48-5"><a href="introduction-to-r.html#cb48-5" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>For example, suppose we want to print whether or not a
+number is less than 5.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="introduction-to-r.html#cb49-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb49-2"><a href="introduction-to-r.html#cb49-2" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb49-3"><a href="introduction-to-r.html#cb49-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;x is less than 5&#39;</span>)</span>
+<span id="cb49-4"><a href="introduction-to-r.html#cb49-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb49-5"><a href="introduction-to-r.html#cb49-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;x is greater than or equal to 5&#39;</span>)</span>
+<span id="cb49-6"><a href="introduction-to-r.html#cb49-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;x is less than 5&quot;</code></pre>
+</div>
+<div id="custom-functions" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Custom functions<a href="introduction-to-r.html#custom-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Custom functions are very useful because they allow us to
+flexibly reuse the same chunk of code in different places
+without having to rewrite the entire chunk.</p></li>
+<li><p>The general syntax for defining functions is as follows:</p></li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="introduction-to-r.html#cb51-1" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument_1, argument_2, ...) {</span>
+<span id="cb51-2"><a href="introduction-to-r.html#cb51-2" tabindex="-1"></a>  <span class="do">## code to run when the function is called. Can use</span></span>
+<span id="cb51-3"><a href="introduction-to-r.html#cb51-3" tabindex="-1"></a>  <span class="do">## `argument_1`, `argument_2`, and any other argument</span></span>
+<span id="cb51-4"><a href="introduction-to-r.html#cb51-4" tabindex="-1"></a>  <span class="do">## passed in.</span></span>
+<span id="cb51-5"><a href="introduction-to-r.html#cb51-5" tabindex="-1"></a>  <span class="do">##...</span></span>
+<span id="cb51-6"><a href="introduction-to-r.html#cb51-6" tabindex="-1"></a>  <span class="fu">return</span>(the_result)</span>
+<span id="cb51-7"><a href="introduction-to-r.html#cb51-7" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><p><code>function_name</code> is the name of the function.</p></li>
+<li><p><code>argument_1</code>, <code>argument_2</code>, etc. are variables that you
+want the code chunk inside the function to use.</p></li>
+<li><p><code>the_result</code> is a variable that you will have to be
+careful to define in the code chunk in the function.</p></li>
+<li><p>Consider the following example:</p></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introduction-to-r.html#cb52-1" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb52-2"><a href="introduction-to-r.html#cb52-2" tabindex="-1"></a>  z <span class="ot">&lt;-</span> x <span class="sc">+</span> y <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb52-3"><a href="introduction-to-r.html#cb52-3" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb52-4"><a href="introduction-to-r.html#cb52-4" tabindex="-1"></a>}</span>
+<span id="cb52-5"><a href="introduction-to-r.html#cb52-5" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="introduction-to-r.html#cb52-6" tabindex="-1"></a><span class="fu">my_func</span>(<span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li><code>my_func</code> take two arguments <code>x</code> and <code>y</code> and returns <code>x +   y - 1</code></li>
+</ul>
+</div>
+<div id="inspect-existing-objects" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Inspect existing objects<a href="introduction-to-r.html#inspect-existing-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><code>R</code> has many built-in functions that are useful for
+inspecting what sort of thing an existing object is. We
+illustrate the use of some of these functions below.</li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introduction-to-r.html#cb54-1" tabindex="-1"></a><span class="co"># define some variables (objects) to inspect</span></span>
+<span id="cb54-2"><a href="introduction-to-r.html#cb54-2" tabindex="-1"></a>var_1 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb54-3"><a href="introduction-to-r.html#cb54-3" tabindex="-1"></a>var_2 <span class="ot">&lt;-</span> <span class="st">&quot;apple&quot;</span></span>
+<span id="cb54-4"><a href="introduction-to-r.html#cb54-4" tabindex="-1"></a>var_3 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb54-5"><a href="introduction-to-r.html#cb54-5" tabindex="-1"></a>var_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb54-6"><a href="introduction-to-r.html#cb54-6" tabindex="-1"></a>var_5 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>)</span>
+<span id="cb54-7"><a href="introduction-to-r.html#cb54-7" tabindex="-1"></a>var_6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">v4=</span>var_4, <span class="at">v5=</span>var_5)</span>
+<span id="cb54-8"><a href="introduction-to-r.html#cb54-8" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="introduction-to-r.html#cb54-9" tabindex="-1"></a><span class="co"># substitute different variables into the following</span></span>
+<span id="cb54-10"><a href="introduction-to-r.html#cb54-10" tabindex="-1"></a><span class="co"># functions to see how they help you inspect existing</span></span>
+<span id="cb54-11"><a href="introduction-to-r.html#cb54-11" tabindex="-1"></a><span class="co"># objects.</span></span>
+<span id="cb54-12"><a href="introduction-to-r.html#cb54-12" tabindex="-1"></a><span class="fu">str</span>(var_1)</span></code></pre></div>
+<pre><code>##  num 10</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-r.html#cb56-1" tabindex="-1"></a><span class="fu">class</span>(var_1)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-r.html#cb58-1" tabindex="-1"></a><span class="fu">head</span>(var_1)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introduction-to-r.html#cb60-1" tabindex="-1"></a><span class="fu">tail</span>(var_1)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introduction-to-r.html#cb62-1" tabindex="-1"></a><span class="fu">summary</span>(var_1)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##      10      10      10      10      10      10</code></pre>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Summary<a href="introduction-to-r.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here’s a list of the R functions we saw in the above
+examples:</p>
+<ol style="list-style-type: decimal">
+<li><code>ls()</code> - Lists objects in the current environment.</li>
+<li><code>rm()</code> - Removes objects from the current environment.</li>
+<li><code>class()</code> - Returns the class (type) of an object.</li>
+<li><code>factor()</code> - Creates a factor (categorical data type).</li>
+<li><code>c()</code> - Combines values into a vector or list.</li>
+<li><code>list()</code> - Creates a list.</li>
+<li><code>data.frame()</code> - Creates a data frame.</li>
+<li><code>rnorm()</code> - Generates normally distributed random numbers.</li>
+<li><code>print()</code> - Prints its argument.</li>
+<li><code>str()</code> - Displays the structure of an R object.</li>
+<li><code>head()</code> - Returns the first parts of an object.</li>
+<li><code>tail()</code> - Returns the last parts of an object.</li>
+<li><code>summary()</code> - Provides a summary of an object’s properties.</li>
+</ol>
+<p>Additionally, we saw how to create and use custom functions,
+as well as how to use control flow constructs like <code>for</code>
+loops, <code>while</code> loops, and <code>if</code> statements.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"depth": 2
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@ new_session: no
 rmd_files: [
   "index.Rmd",
   "section_first_steps_with_R.Rmd",
-  "section_intro_to_data_table.Rmd",
+  # "section_intro_to_data_table.Rmd",
   #  "section_intro_to_ggplot.Rmd",
   #  "section_what_is_stats.Rmd",
   #  "section_what_is_experiment_design.Rmd",

@@ -9,7 +9,7 @@ book:
 clean:
 	rm bookdown_files.Rmd
 	rm -rf _bookdown_files
-	rm -rf book_html
+	rm -rf ../*.html
 
 .PHONY: all book clean
 
