@@ -1,0 +1,141 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Paired samples t-test
+
+Suppose we ask the following question about our criterion
+learning data:
+
+- **Do people reach criterion faster on the second problem
+than they do on the first problem?**
+
+To address this question we proceed as we did in the
+previous example. Let $X \sim \mathcal{N}(\mu_X, \sigma_X)$
+and $Y \sim \mathcal{N}(\mu_Y, \sigma_Y)$. Let $X$ generate
+data for *problem 1* condition and $Y$ generate data for the
+*problem 2* condition.
+
+In the previous example, $X$ and $Y$ were independent. This
+was a reasonable assumption because our design is
+between-subjects with respect to condition. Here, however,
+we are comparing data from the same subjects on different
+problems. That is, our design is within-subject with respect
+to problem number. This means that we cannot assume
+independence, and our procedure will look a bit different.
+
+As we will see below, the trick will be to compute
+difference scores for each subject, and then simply proceed
+as we would with a one-sample t-test using these difference
+scores as our sample.
+
+<b>1\. Specify the null and alternative hypotheses ($H_0$
+and $H_1$) in terms of a distribution and population
+parameter.</b>
+   
+Let $D$ be the random variable that generates paired
+difference scores between $X$ and $Y$.
+
+$$
+H_0: \mu_D = 0 \\
+H_1: \mu_D > 0
+$$
+
+<b>2\. Specify the type I error rate -- denoted by the
+symbol $\alpha$ -- you are willing to tolerate.</b>
+
+$$\alpha = 0.05$$
+   
+<b>3\. Specify the sample statistic that you will use to
+estimate the population parameter in step 1 and state how it
+is distributed under the assumption that $H_0$ is true.</b>
+
+$$
+\begin{align}
+\hat{\mu_D} = \overline{D} &= \frac{1}{n} \sum_{i=1}^n x_i - y_i \\
+              \overline{D} &\sim \mathcal{N}(\mu_\overline{D}, \sigma_\overline{D}) \\
+              \mu_\overline{D} &= \mu_D \\
+              \sigma_\overline{D} &= \frac{\sigma_D}{\sqrt{n}}
+\end{align}
+$$
+
+As usual, we will typically not know $\sigma_D$ and so we
+will estimate it with the sample standard deviation, and the
+resulting test statistic will be $t$.
+
+$$
+t_{obs} = \frac{\overline{D} - \mu_{\overline{D}}}{\sigma_\overline{D}} \sim t(n - 1)
+$$
+
+where the degrees of freedom is $n-1$.
+
+<b>4\. Obtain a random sample and use it to compute the
+   sample statistic from step 3. Call this value
+   $\widehat{\theta}_{\text{obs}}$</b>
+
+```{r}
+library(data.table)
+library(ggplot2)
+rm(list = ls())
+
+d <- fread(
+  'https://crossley.github.io/cogs2020/data/criterion_learning/crit_learn.csv')
+
+d <- d[cnd %in% c('Delay', 'Short ITI', 'Long ITI')]
+
+dd <- d[order(cnd, sub), mean(t2c), .(cnd, sub)]
+
+## Add a column to indicate the number of problems solved.
+## This is important because we cant compute a diff score
+## unless they solved at least two problems.
+d[, nps := max(prob_num), .(cnd, sub)]
+
+x <- d[nps > 1 & cnd %in% c('Delay', 'Long ITI') & prob_num==1, unique(t2c)]
+y <- d[nps > 1 & cnd %in% c('Delay', 'Long ITI') & prob_num==2, unique(t2c)]
+
+D <- x - y
+n <- length(D)
+
+Dbar <- mean(D)
+Dbarsig <- sd(D) / sqrt(n)
+
+tobs <- Dbar / Dbarsig
+```
+
+<b>5\. If $\widehat{\theta}_{\text{obs}}$ is very unlikely
+to occur under the assumption that $H_0$ is true, then
+reject $H_0$. Otherwise, do not reject $H_0$.</b>
+
+```{r}
+df <- n - 1
+pval <- pt(tobs, df, lower.tail=F)
+
+if(pval < 0.05) {
+  print('reject the null')
+  print(tobs)
+  print(df)
+  print(pval)
+} else {
+  print('fail to reject the null')
+  print(tobs)
+  print(df)
+  print(pval)
+}
+
+# pass the difference scores and set paired to FALSE
+t.test(x=D,
+       alternative='greater',
+       mu=0,
+       paired=FALSE,
+       var.equal=TRUE,
+       conf.leve=0.95)
+
+# pass both x and y and set paried to TRUE
+t.test(x=x,
+       y=y,
+       alternative='greater',
+       mu=0,
+       paired=TRUE,
+       var.equal=TRUE,
+       conf.leve=0.95)
+```

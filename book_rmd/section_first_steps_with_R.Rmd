@@ -1,0 +1,348 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Introduction to R
+
+This chapter provides an introduction to R, covering basic
+concepts like defining variables, performing mathematical
+operations, and using built-in functions. It also introduces
+various data types (numeric, character, logical, and factor)
+and containers (vector, list, and data frame) in R, along
+with how to create and access their elements. It also covers
+control flow with for and while loops, conditional flow with
+if statements, and the creation of custom functions. Lastly,
+it discusses inspecting objects using functions like ls(),
+rm(), class(), str(), head(), tail(), and summary() to
+understand and manage the R environment.
+
+## Basics
+```{r}
+# Use R as a calculator
+2 + 2
+
+# Store results in variables
+x <- 2 + 2
+x
+
+# Perform mathematical operations on variables
+x <- 2 + 2
+y <- 3 + 7
+x + y
+```
+
+## Functions
+- Functions are objects that take *arguments* as inputs,
+  perform some operation on those inputs, and return the
+  results.
+
+- `ls()` is a function that reports what objects (e.g.,
+  variables you have defined) are in the current environment
+  and therefore available for you to interact with.
+
+```{r}
+ls()
+```
+
+- `rm()` is a function that can remove objects from the
+  current environment.
+
+- It takes several arguments. Type `?rm()` to see help
+  information on how to use it.
+
+- We will commonly combine `ls()` and `rm()` to remove all
+  objects from the current environment. This is a good thing
+  to do at the beginning of every new script you write.
+
+```{r}
+# Remove all objects from the current R session.
+rm(list = ls())
+```
+
+## Data types
+
+### `numeric`
+```{r}
+x <- 2
+class(x)
+```
+
+### `character`
+```{r}
+x <- 'a'
+class(x)
+```
+
+### `logical`
+```{r}
+x <- TRUE
+class(x)
+```
+
+### `factor`
+
+- A `factor` is a *categorical* data type. They are most
+  often used to code for different conditions in an
+  experiment.
+
+```{r}
+x <- factor(1)
+class(x)
+```
+
+## Containers
+
+### `vector`
+
+- Create a vector with the function `c()`.
+
+- The elements of a `vector` must be of the same type.
+
+- Access element `i` of `vector` `x` with square brackets
+  (e.g., `x[i]`)
+
+```{r}
+# Create a vector with any three numbers you like.
+x <- c(1, 2, 3.14159)
+x
+
+# Access the third element of x
+x3 <- x[3]
+x3
+```
+
+### `list`
+
+- Create a list with the function `list()`
+
+- The elements of a `list` can be of different types.
+
+- Access element `i` of `list` `x` with *double* square
+  brackets (e.g., `x[[i]]`)
+
+```{r}
+# Create a three element list containing one numeric
+# item, one `character` item, and one logical item.
+x <- list(3.14159, 'pi', TRUE)
+x
+
+# Access the third element of x
+x3 <- x[[3]]
+x3
+```
+
+### `data.frame`
+
+- Create a `data.frame` with the function `data.frame()`
+
+-`data.frame` is pretty close what you might think of as an
+excel spreadsheet.
+
+- Access column `x` in `data.frame` `df` with the `$`
+  operator (e.g., `df$x`).
+
+```{r}
+# Create vectors to later store in a data frame
+x <- c('I', 'I', 'I', 'II', 'II', 'II', 'III', 'III', 'III', 'IV', 'IV', 'IV')
+y <- c('a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e', 'f', 'f')
+z <- rnorm(12)
+
+# Create the data frame
+df <- data.frame(x, y, z)
+df
+
+# Access column x
+df$x
+```
+
+## Loops
+
+### `for` loops
+
+- `for` loops will run a chunk of code repeatedly for a
+  fixed number of iterations.
+
+- The general syntax of a `for` loop is as follows:
+
+```{r}
+for(x in y) {
+  # On the first iteration, `x` will take the value `y[1]`
+  # On the second iteration, `x` will take the value `y[2]`
+  # On the third iteration, `x` will take the value `y[3]`
+  # The loop will end after `x` has taken the value `y[length(y)]`
+  # That is, the loop will end when we have iterated through
+  # all elements in `y`
+}
+```
+
+- As an example suppose we want to print the numbers 1, 2, 3
+
+```{r}
+# dumb monkey way to print 1, 2, 3
+print(1)
+print(2)
+print(3)
+
+# smart monkey way to print 1, 2, 3
+for(i in c(1, 2, 3)) {
+  print(i)
+}
+```
+
+### `while` loops
+
+- `while` loops will run a chunk of code repeatedly over and
+  over again until some `logical` condition is met.
+
+- You have to be careful with these, because if your code
+  never sets up a stopping condition, then the loop will
+  execute until your computer turns to dust.
+
+- The general syntax of a `for` loop is as follows:
+
+```{r, eval=F}
+condition <- TRUE
+while(condition) {
+  # On the first iteration, `x` will take the value `y[1]`
+  # On the second iteration, `x` will take the value `y[2]`
+  # On the third iteration, `x` will take the value `y[3]`
+  # The loop will end only when `condition` is set to `FALSE`
+}
+```
+
+- Lets again consider the example printing the numbers 1, 2,
+  3
+
+```{r}
+# dumb monkey way to print 1, 2, 3
+print(1)
+print(2)
+print(3)
+
+# smart monkey way to print 1, 2, 3
+x <- 1
+while(x < 4) {
+  print(x)
+  x <- x + 1 # without this line the loop would run forever
+}
+```
+
+## Conditional flow
+
+- Very often we will want to execute a chunk of code only in
+  some situations (e.g., for a particular experiment
+  condition) and we will want to run some other chunk of
+  code in other situations.
+
+- The primary method for doing this is to use `if`
+  statements. The general syntax of an `if` statement is as
+  follows:
+
+```{r, eval=F}
+if(condition) {
+  # code to run if condition is TRUE
+} else {
+  # code to run if condition is FALSE
+}
+```
+
+* For example, suppose we want to print whether or not a
+  number is less than 5.
+
+```{r}
+x <- 3
+if(x < 5) {
+  print('x is less than 5')
+} else {
+  print('x is greater than or equal to 5')
+}
+```
+
+## Custom functions
+
+- Custom functions are very useful because they allow us to
+  flexibly reuse the same chunk of code in different places
+  without having to rewrite the entire chunk.
+
+- The general syntax for defining functions is as follows:
+
+```{r}
+function_name <- function(argument_1, argument_2, ...) {
+  ## code to run when the function is called. Can use
+  ## `argument_1`, `argument_2`, and any other argument
+  ## passed in.
+  ##...
+  return(the_result)
+}
+```
+
+- `function_name` is the name of the function.
+
+- `argument_1`, `argument_2`, etc. are variables that you
+  want the code chunk inside the function to use.
+
+- `the_result` is a variable that you will have to be
+  careful to define in the code chunk in the function.
+
+- Consider the following example:
+
+```{r}
+my_func <- function(x, y) {
+  z <- x + y - 1
+  return(z)
+}
+
+my_func(x=2, y=3)
+```
+
+- `my_func` take two arguments `x` and `y` and returns `x +
+  y - 1`
+
+## Inspect existing objects
+
+- `R` has many built-in functions that are useful for
+  inspecting what sort of thing an existing object is. We
+  illustrate the use of some of these functions below.
+
+```{r}
+# define some variables (objects) to inspect
+var_1 <- 10
+var_2 <- "apple"
+var_3 <- TRUE
+var_4 <- c(1, 2, 3)
+var_5 <- list('a', 'b', 'c')
+var_6 <- data.frame(v4=var_4, v5=var_5)
+
+# substitute different variables into the following
+# functions to see how they help you inspect existing
+# objects.
+str(var_1)
+class(var_1)
+head(var_1)
+tail(var_1)
+summary(var_1)
+```
+
+## Summary
+
+Here's a list of the R functions we saw in the above
+examples:
+
+1. `ls()` - Lists objects in the current environment.
+2. `rm()` - Removes objects from the current environment.
+3. `class()` - Returns the class (type) of an object.
+4. `factor()` - Creates a factor (categorical data type).
+5. `c()` - Combines values into a vector or list.
+6. `list()` - Creates a list.
+7. `data.frame()` - Creates a data frame.
+8. `rnorm()` - Generates normally distributed random numbers.
+9. `print()` - Prints its argument.
+10. `str()` - Displays the structure of an R object.
+11. `head()` - Returns the first parts of an object.
+12. `tail()` - Returns the last parts of an object.
+13. `summary()` - Provides a summary of an object's properties.
+
+Additionally, we saw how to create and use custom functions,
+as well as how to use control flow constructs like `for`
+loops, `while` loops, and `if` statements. 
+

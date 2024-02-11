@@ -1,0 +1,56 @@
+---
+title: "Tutorial 3 - Visualise data with `ggplot2`"
+author: "Author: Matthew J. Crossley"
+date: "Last update: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float:
+        collapsed: false
+        smooth_scroll: true
+    toc_depth: 3
+    fig_caption: yes
+    # code_folding: show
+    number_sections: false
+    theme: cosmo
+fontsize: 14pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, collapse=T)
+```
+
+```{r, echo=T, eval=F}
+library(data.table)
+library(ggplot2)
+rm(list=ls())
+
+d <- as.data.table(diamonds)
+
+## 1.
+ggplot(d[cut %in% c('Ideal', 'Premium')], aes(carat, fill=as.factor(cut))) +
+  geom_histogram(alpha=0.75)
+
+d[cut == 'Ideal', .(mean_hwy=mean(carat),
+        range_hwy=diff(range(carat))),
+    .(cut)]
+
+## 2.
+ggplot(d[clarity %in% c('SI2', 'SI1', 'VS1')], 
+       aes(cut, fill=clarity)) +
+  geom_bar(position=position_dodge())
+
+d[, .N, .(cut, clarity)]
+
+## 3.
+ggplot(d[price < 10000], aes(cut, price, fill=clarity)) +
+  geom_boxplot()
+
+d[price < 1000, .(median_cty=as.numeric(median(price)),
+        range_cty=diff(range(price))),
+    .(cut, clarity)]
+
+## 4.
+ggplot(d[color == 'E'], aes(carat, price, colour=cut, fill=color)) +
+  geom_point()
+```

@@ -1,0 +1,35 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+### Continuous vs discrete data
+Random variables are processes that generate data in an
+experiment performed by sampling from a particular
+population. The data that random variables produce can be
+either discrete or continuous. In a rather straight-forward
+use of terms, a random variable that produces discrete data
+is called a **discrete random variable** and a random
+variable that produces continuous data is called a
+**continuous random variable**.
+
+For example, consider the random variable $X$ defined as a
+process that returns the body lengths in cm of rats drawn
+from a **population** defined as all rats in the universe. A
+sample from this random variable might look as follows:
+$$
+\boldsymbol{x} = (2.877970, 7.497241, 5.455286, 4.903578, 7.806955)
+$$
+Here, $X$ is clearly a continuous random variable because it
+seems that any non-zero value can be obtained when sampling
+from it.
+
+As another example, consider the random variable $X$ defined
+as a process that returns the number of neurons in a rat
+cerebral cortex drawn from the same population as in the
+previous example. A sample from this random variable might
+look as follows:
+$$
+\boldsymbol{x} = (21e6 21e6 18e6 20e6 22e6)
+$$
+Here, $X$ is clearly a discrete random variable because that
+only integer values can be obtained when sampling from it.

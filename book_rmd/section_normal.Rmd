@@ -1,0 +1,88 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+# Noraml Distribution
+
+## Learning objectives
+
+* Define and understand **Normal** random variables.
+
+## Normal distribution
+
+### Definition
+The normal distribution is defined by two parameters:
+
+- $\mu$: population mean
+- $\sigma$: population standard deviation
+
+It is just a quirk of the normal distribution that the
+parameters that define it correspond to its mean and
+standard deviation. This will not generally be true for most
+other distributions that we will deal with.
+
+### Probability distribution
+
+The normal distribution is continuous, and the continuous
+probability distributions are called probability density
+functions (pdfs).
+
+The following equation defines the pdf of a normal
+distribution:
+
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}{\frac{(x - \mu)^2}{\sigma}}}
+$$
+
+#### Normal distribution: function of $\mu$ and $\sigma$
+
+Lets have a look at how the normal distribution changes with
+different mean and variance.
+
+```{r, echo=F}
+## Lets more formally examine the of effect different values of n and p
+mean_levels <- c(-25, 0, 25)
+var_levels <- c(1, 5, 10)
+
+x <- seq(-50, 50, 0.1)
+
+## Watch out: `for()` loops ahead!
+mean_rec <-  c()
+var_rec <- c()
+x_rec <- c()
+p_norm_rec <- c()
+for(mu in mean_levels) {
+    for(sigma in var_levels) {
+        mean_rec <- c(mean_rec, rep(mu, length(x)))
+        var_rec <- c(var_rec, rep(sigma, length(x)))
+        x_rec <- c(x_rec, x)
+        p_norm_rec <- c(p_norm_rec, dnorm(x, mu, sigma))
+    }
+}
+
+d <- data.table(mean=mean_rec, var=var_rec, x=x_rec, p_norm=p_norm_rec)
+
+ggplot(d, aes(x=x, y=p_norm)) +
+    geom_line() +
+    xlab('X') +
+    ylab('Probability Density') +
+    facet_grid(mean~var)
+```
+
+#### The standard normal (Z)
+
+The *standard normal* distribution is a normal distribution
+with zero mean and unit variance ($\mu=0$, $\sigma^2=1$). It
+is also called the $Z$ distribution. It looks like this:
+
+```{r, echo=F}
+
+mu <- 0
+sigma <- 1
+
+x <- seq(-5, 5, 0.01)
+fx <- dnorm(x, mu, sigma)
+d <- data.table(x, fx)
+ggplot(d, aes(x, fx)) +
+  geom_line()
+
+```

@@ -1,0 +1,788 @@
+---
+title: "Data analysis and statistics for cognitive neuroscience"
+author: "Matthew J. Crossley"
+date: "`r Sys.Date()`"
+output:
+  bookdown::gitbook:
+    css: style.css
+    split_by: chapter
+    config:
+      toc:
+        depth: 2
+        collapse: section
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(data.table)
+library(ggpubr)
+library(ez)
+```
+
+# Introduction to the book
+First and foremost, this book is an active work in progress
+and is liable to change somehwat from week to week.  If you
+find errors, or if you find any section particularly
+confusion, please feel free to reach out to me for help.
+
+Statistics is often taught to the aspiring cognitive
+neuroscientist as a series of cookbook recipes, without
+imparting any deep understanding of the reasoning that
+generated those recipes in the first place. Too often I
+have seen the deer in headlights look on the newly minted
+graduate student when a dataset they are asked to analyse
+does not fit the mold of the recipes they have been
+previously exposed to. 
+
+The ambition of this book is to topple this situation on its
+head. We will repeatedly emphasize developing the reasoning
+skills necessary to understand the recipes, and to write our
+own recipes when called for. In the course of this book we
+will nevertheless encounter the usual suspects -- t-tests,
+ANOVAs, regressions, and so -- but you may find that we go
+deeper into fewer recipes rather than skimming the surface
+of many.
+
+We will use the R programming language throughout this book.
+We use R because it is mature; It is widely embraced in
+psychology and neuroscience; It is widely embraced in data
+science; It is relatively easy to learn. That said, it is
+not the only good option. Python, for example, is excellent.
+Matlab is also excellent -- though not as widely used and
+not as free -- but it is still widely used in academia. You
+might even run into more obscure languages here and there.
+At the end of the day, we have to pick one. R is a good
+place to start and it will offer you excellent return on
+investment.
+
+Just as R is a reasonable choice for a programming language,
+Rstudio is a reasonable choice for an integrated development
+environment (IDE). It is free, it is widely used, and it is
+well supported.  That said, there are numerous options for
+programming in R.  I have old-school computer science
+friends that edit code in a plain text file and execute it
+straight from a terminal.  There is absolutely nothing wrong
+with this.  Program where you like.
+
+But why bother learning to code now that chatGPT is so good
+at writing code for us? That is a very good question. The
+point I would like you to notice is how this question
+underscores the importance of developing our reasoning
+capacity both as statisticians and as programmers. The nuts
+and bolts of getting code to run or have some kind of
+statistical test or another performed on your data is only
+going to become easier and easier and more and more
+automated with increasing AI capabilities. But the reasoning
+behind the nuts and bolts will endure the test of time.
+
+
+<!--chapter:end:index.Rmd-->
+
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Introduction to R
+
+This chapter provides an introduction to R, covering basic
+concepts like defining variables, performing mathematical
+operations, and using built-in functions. It also introduces
+various data types (numeric, character, logical, and factor)
+and containers (vector, list, and data frame) in R, along
+with how to create and access their elements. It also covers
+control flow with for and while loops, conditional flow with
+if statements, and the creation of custom functions. Lastly,
+it discusses inspecting objects using functions like ls(),
+rm(), class(), str(), head(), tail(), and summary() to
+understand and manage the R environment.
+
+## Basics
+```{r}
+# Use R as a calculator
+2 + 2
+
+# Store results in variables
+x <- 2 + 2
+x
+
+# Perform mathematical operations on variables
+x <- 2 + 2
+y <- 3 + 7
+x + y
+```
+
+## Functions
+- Functions are objects that take *arguments* as inputs,
+  perform some operation on those inputs, and return the
+  results.
+
+- `ls()` is a function that reports what objects (e.g.,
+  variables you have defined) are in the current environment
+  and therefore available for you to interact with.
+
+```{r}
+ls()
+```
+
+- `rm()` is a function that can remove objects from the
+  current environment.
+
+- It takes several arguments. Type `?rm()` to see help
+  information on how to use it.
+
+- We will commonly combine `ls()` and `rm()` to remove all
+  objects from the current environment. This is a good thing
+  to do at the beginning of every new script you write.
+
+```{r}
+# Remove all objects from the current R session.
+rm(list = ls())
+```
+
+## Data types
+
+### `numeric`
+```{r}
+x <- 2
+class(x)
+```
+
+### `character`
+```{r}
+x <- 'a'
+class(x)
+```
+
+### `logical`
+```{r}
+x <- TRUE
+class(x)
+```
+
+### `factor`
+
+- A `factor` is a *categorical* data type. They are most
+  often used to code for different conditions in an
+  experiment.
+
+```{r}
+x <- factor(1)
+class(x)
+```
+
+## Containers
+
+### `vector`
+
+- Create a vector with the function `c()`.
+
+- The elements of a `vector` must be of the same type.
+
+- Access element `i` of `vector` `x` with square brackets
+  (e.g., `x[i]`)
+
+```{r}
+# Create a vector with any three numbers you like.
+x <- c(1, 2, 3.14159)
+x
+
+# Access the third element of x
+x3 <- x[3]
+x3
+```
+
+### `list`
+
+- Create a list with the function `list()`
+
+- The elements of a `list` can be of different types.
+
+- Access element `i` of `list` `x` with *double* square
+  brackets (e.g., `x[[i]]`)
+
+```{r}
+# Create a three element list containing one numeric
+# item, one `character` item, and one logical item.
+x <- list(3.14159, 'pi', TRUE)
+x
+
+# Access the third element of x
+x3 <- x[[3]]
+x3
+```
+
+### `data.frame`
+
+- Create a `data.frame` with the function `data.frame()`
+
+-`data.frame` is pretty close what you might think of as an
+excel spreadsheet.
+
+- Access column `x` in `data.frame` `df` with the `$`
+  operator (e.g., `df$x`).
+
+```{r}
+# Create vectors to later store in a data frame
+x <- c('I', 'I', 'I', 'II', 'II', 'II', 'III', 'III', 'III', 'IV', 'IV', 'IV')
+y <- c('a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e', 'f', 'f')
+z <- rnorm(12)
+
+# Create the data frame
+df <- data.frame(x, y, z)
+df
+
+# Access column x
+df$x
+```
+
+## Loops
+
+### `for` loops
+
+- `for` loops will run a chunk of code repeatedly for a
+  fixed number of iterations.
+
+- The general syntax of a `for` loop is as follows:
+
+```{r}
+for(x in y) {
+  # On the first iteration, `x` will take the value `y[1]`
+  # On the second iteration, `x` will take the value `y[2]`
+  # On the third iteration, `x` will take the value `y[3]`
+  # The loop will end after `x` has taken the value `y[length(y)]`
+  # That is, the loop will end when we have iterated through
+  # all elements in `y`
+}
+```
+
+- As an example suppose we want to print the numbers 1, 2, 3
+
+```{r}
+# dumb monkey way to print 1, 2, 3
+print(1)
+print(2)
+print(3)
+
+# smart monkey way to print 1, 2, 3
+for(i in c(1, 2, 3)) {
+  print(i)
+}
+```
+
+### `while` loops
+
+- `while` loops will run a chunk of code repeatedly over and
+  over again until some `logical` condition is met.
+
+- You have to be careful with these, because if your code
+  never sets up a stopping condition, then the loop will
+  execute until your computer turns to dust.
+
+- The general syntax of a `for` loop is as follows:
+
+```{r, eval=F}
+condition <- TRUE
+while(condition) {
+  # On the first iteration, `x` will take the value `y[1]`
+  # On the second iteration, `x` will take the value `y[2]`
+  # On the third iteration, `x` will take the value `y[3]`
+  # The loop will end only when `condition` is set to `FALSE`
+}
+```
+
+- Lets again consider the example printing the numbers 1, 2,
+  3
+
+```{r}
+# dumb monkey way to print 1, 2, 3
+print(1)
+print(2)
+print(3)
+
+# smart monkey way to print 1, 2, 3
+x <- 1
+while(x < 4) {
+  print(x)
+  x <- x + 1 # without this line the loop would run forever
+}
+```
+
+## Conditional flow
+
+- Very often we will want to execute a chunk of code only in
+  some situations (e.g., for a particular experiment
+  condition) and we will want to run some other chunk of
+  code in other situations.
+
+- The primary method for doing this is to use `if`
+  statements. The general syntax of an `if` statement is as
+  follows:
+
+```{r, eval=F}
+if(condition) {
+  # code to run if condition is TRUE
+} else {
+  # code to run if condition is FALSE
+}
+```
+
+* For example, suppose we want to print whether or not a
+  number is less than 5.
+
+```{r}
+x <- 3
+if(x < 5) {
+  print('x is less than 5')
+} else {
+  print('x is greater than or equal to 5')
+}
+```
+
+## Custom functions
+
+- Custom functions are very useful because they allow us to
+  flexibly reuse the same chunk of code in different places
+  without having to rewrite the entire chunk.
+
+- The general syntax for defining functions is as follows:
+
+```{r}
+function_name <- function(argument_1, argument_2, ...) {
+  ## code to run when the function is called. Can use
+  ## `argument_1`, `argument_2`, and any other argument
+  ## passed in.
+  ##...
+  return(the_result)
+}
+```
+
+- `function_name` is the name of the function.
+
+- `argument_1`, `argument_2`, etc. are variables that you
+  want the code chunk inside the function to use.
+
+- `the_result` is a variable that you will have to be
+  careful to define in the code chunk in the function.
+
+- Consider the following example:
+
+```{r}
+my_func <- function(x, y) {
+  z <- x + y - 1
+  return(z)
+}
+
+my_func(x=2, y=3)
+```
+
+- `my_func` take two arguments `x` and `y` and returns `x +
+  y - 1`
+
+## Inspect existing objects
+
+- `R` has many built-in functions that are useful for
+  inspecting what sort of thing an existing object is. We
+  illustrate the use of some of these functions below.
+
+```{r}
+# define some variables (objects) to inspect
+var_1 <- 10
+var_2 <- "apple"
+var_3 <- TRUE
+var_4 <- c(1, 2, 3)
+var_5 <- list('a', 'b', 'c')
+var_6 <- data.frame(v4=var_4, v5=var_5)
+
+# substitute different variables into the following
+# functions to see how they help you inspect existing
+# objects.
+str(var_1)
+class(var_1)
+head(var_1)
+tail(var_1)
+summary(var_1)
+```
+
+## Summary
+
+Here's a list of the R functions we saw in the above
+examples:
+
+1. `ls()` - Lists objects in the current environment.
+2. `rm()` - Removes objects from the current environment.
+3. `class()` - Returns the class (type) of an object.
+4. `factor()` - Creates a factor (categorical data type).
+5. `c()` - Combines values into a vector or list.
+6. `list()` - Creates a list.
+7. `data.frame()` - Creates a data frame.
+8. `rnorm()` - Generates normally distributed random numbers.
+9. `print()` - Prints its argument.
+10. `str()` - Displays the structure of an R object.
+11. `head()` - Returns the first parts of an object.
+12. `tail()` - Returns the last parts of an object.
+13. `summary()` - Provides a summary of an object's properties.
+
+Additionally, we saw how to create and use custom functions,
+as well as how to use control flow constructs like `for`
+loops, `while` loops, and `if` statements. 
+
+
+<!--chapter:end:section_first_steps_with_R.Rmd-->
+
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Introduction to `data.table`
+This chapter introduces the `data.table` library, a
+high-performance alternative to R's standard `data.frame`.
+We will cover the basics of working with `data.table`
+objects, focusing on key operations such as creating data
+tables, subsetting rows, selecting and manipulating columns,
+and grouping operations. It explains the `data.table` syntax
+`DT[i, j, by]`, where `i` filters rows, `j` selects columns
+or performs calculations, and `by` allows for group-wise
+operations.
+
+Practical examples demonstrate how to:
+
+- Load the `data.table` library and create a `data.table`.
+
+- Subset rows using integers, logical expressions, and the
+  `%in%` operator.
+
+- Select and operate on columns, including summarizing data
+  with functions like `mean()` and `sd()`.
+
+- Combine row selection (`i`) and column operations (`j`)
+  for more complex data manipulation.
+
+- Group data using the `by` argument to apply functions
+  within groups.
+
+- Add and modify columns within a `data.table` using the
+  `:=` operator.
+
+- Manage data table copies and understand the difference
+  between shallow and deep copies.
+
+- Import data into a `data.table` using the `fread`
+  function.
+
+We will also see how to deal with different data formatting,
+using `melt` and `dcast` functions for reshaping data tables
+from wide format to long or vice versa.
+
+## Loading the `data.table` library and creating a `data.table`
+```{r}
+# Load the data.table library 
+library(data.table)
+
+# Create vectors to later store in a data frame
+x <- c('I', 'I', 'I', 'II', 'II', 'II', 'III', 'III', 'III', 'IV', 'IV', 'IV')
+y <- c('a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e', 'f', 'f')
+z <- rnorm(12)
+
+# create a data table
+dt <- data.table(x, y, z)
+dt
+```
+
+### Subset rows in `i`
+
+* There are many ways to select rows.
+
+* Set `i` equal to a vector of integers.
+
+* Set `i` equal to a logical expression.
+
+* It will sometimes be useful to use the `%in%` operator
+  when specifying `i`.
+  
+```{r}
+# select rows by passing integer indices
+dt[1:4]
+dt[4:7]
+dt[c(2, 4)]
+dt[c(2, 5, 11)]
+
+# select rows by passing a logical expression
+dt[x=='II']
+dt[(x=='II') & (y=='c')]
+dt[(x=='II') & (y=='c') & (z > 0)]
+
+# select rows by implementing a logical expression using
+# `chaining`
+dt[x=='II'][y=='c'][z > 0]
+
+# select rows using the `%in%` operator
+dt[x %in% c('I', 'II')]
+dt[y %in% c('b', 'f')]
+
+# Notice that using the `%in%` operator is essentially
+# performing an *or* logical operation
+dt[(x=='I') | (x=='II')]
+dt[(y=='b') | (y=='f')]
+```
+
+* If you want to operate on every row of some set of
+  columns, leave the `i` argument blank.
+
+* This will result in the first character inside the square
+  brackets being a comma, which looks a bit strange if
+  you're not used to it. Just remember to read it as *select
+  every row*.
+
+* `data.table` also provides a keyword `.N` that can be
+  useful in a number of ways. One such way is to use it in
+  selecting rows as shown in the next code chunk.
+
+```{r}
+dt # select every row
+dt[,] # select every row
+dt[1:.N] # select every row using the .N keyword
+dt[2:.N] # select all but the first row using the .N keyword
+```
+
+### Select columns with `j`
+* To operate on specific columns, set `j` equal to a list of
+  the names of the columns you want.
+
+* Inside the square brackets of a `data.table`, `list` can
+  be abbreviated with a `.`, which can also look strage at
+  first. Once you get used to it, you will appreciate the
+  brevity.
+
+### Select and operate on columns with `j`
+* You can do a lot more than just return the columns
+  specified in `j`. In fact, you can perform any operation
+  you want on them.
+
+```{r}
+# Select every row of columns y and z the long way
+dt[, list(y, z)]
+
+# Select every row of columns y and z the cool way
+dt[, .(y, z)]
+
+# select rows 1:4 and return the z column of the result as a
+# vector
+dt[1:4, z]
+
+# select rows 1:4 and return the z column of the result as a
+# data.table
+dt[1:4, list(z)]
+
+# select rows 1:4 and return the z column of the result as a
+# data.table, but use `.` to abbreviate `list`. This is a
+# thing specific to data.table.
+dt[1:4, .(z)]
+
+# select and operate on columns
+# select rows 1:4 and return a summary statistic of the
+# resulting z column
+dt[1:4, mean(z)]
+dt[1:4, sd(z)]
+
+# notice the default naming of the columns in the following
+# result
+dt[1:4, list(mean(z), sd(z))]
+
+# control the names of the resulting columns
+dt[1:4, list(z_mean = mean(z), z_sd = sd(z))]
+
+# select all rows and compute summary statistics of the
+# resulting data.table
+dt[, .(mean(z), sd(z))] # default column names
+dt[, list(z_mean=mean(z), z_sd=sd(z))] # custom column names
+```
+
+
+### Combine `i` and `j`
+
+* It is straightforward to combine `i` and `j`.
+
+```{r}
+# Select all rows for which x==II and return columns y and z
+dt[x=='II', .(y, z)]
+```
+
+
+### Group using `by`
+
+* The real magic of `data.table` comes in the power of the
+  `by` argument.
+
+* `by` allows you apply the operation that you specify with
+  `j` to separate groups of rows defined by the unique
+  values in the columns specified in `by`.
+
+* Put another way, whatever column you pass to `by` will be
+  split up into groups with each unique value getting its
+  own group. Those groups will then be applied to the
+  columns you specify in `j` and the operation also
+  specified in `j` will be applied only to rows from the
+  same group. Then, after all is done, everything is put
+  back into a single `data.table`.
+
+```{r}
+# inefficient way to group by x
+dt[x=="I", mean(z)]
+dt[x=="II", mean(z)]
+dt[x=="III", mean(z)]
+dt[x=="IV", mean(z)]
+
+# efficient and beautiful way to group by x
+dt[, mean(z), .(x)]
+
+# the efficient and beautiful way of doing things extends to
+# grouping by multiple variables with ease
+dt[, mean(z), .(x, y)]
+
+# return more than one summary statistic grouped by x
+dt[, .(mean(z), sd(z)), .(x)] # default naming of resulting columns
+dt[, .(z_mean=mean(z), z_sd=sd(z)), .(x)] # custom naming of resulting columns
+```
+
+### Adding and modifying columns
+
+* Use the `:=` operator inside the `j` argument of a
+  `data.table` to add or modify a column.
+
+```{r, error=T}
+# if you pass a single number, data.table will fill the
+# entire column with that value
+dt[, a := 9]
+
+# otherwise, just pass a vector of the same length as the
+# data.table
+dt[, b := seq(2, 24, 2)]
+
+# notice that you get an error if you try to create a column
+# using a vector that isn't exactly the correct length
+dt[, b := seq(2, 26, 2)]
+# redefine or modify an existing column the same way
+dt[, b := seq(4, 48, 4)]
+
+# remove a column using := and the NULL keyword
+dt[, b := NULL]
+
+# don't use the `<-` operator and the `:=`operator at the
+# same time. It works but is inefficient
+dt <- dt[, c := 9] # don't do this
+
+# it all works the same with non-numerical columns
+dt[, betsy := 'mouse']
+dt[, betsy := c('mouse', 'rat')] # notice the error
+new_col_betsy <- rep(c('mouse', 'rat'), 6)
+dt[, betsy := new_col_betsy] # add betsy
+```
+
+### Be careful when copying `data.table` objects
+
+* `dt2 = dt` creates a *shallow copy*. This means that there
+  is really only one `data.table` object in memory, but it
+  can be referred to by both names.
+
+* This means that changes to `dt2` will be reflected in `dt`
+  and vice-versa.
+
+* You can show that this is the case by modifying dt2 and
+  observing that dt also changes (see code chunks below).
+
+* To create a *deep copy* use `dt2 = data.table(dt)`.
+
+```{r}
+# print dt to see what it looks like before messing with it
+dt 
+
+# this is a shallow copy
+dt_copy = dt
+dt_copy[, a := NULL]
+
+# notice we also deleted the `a` column from dt, not just from
+# dt_copy
+dt
+
+# this is a deep copy
+dt_copy = data.table(dt)
+dt_copy[, x := NULL]
+
+# now our changes to dt_copy didn't also change dt
+dt
+```
+
+### Getting data into a `data.table`
+* The first and primary method that will use to get data
+  into a `data.table` is the `fread` function, which is part
+  of the `data.table` library.
+
+* The following code chunk reads a .csv file into
+  `data.table`.
+
+```{r}
+# Location of the csv file
+# can be on the internet or on your local machine
+f <- 'https://crossley.github.io/cogs2020/data/maze/maze.csv'
+
+# use the fread function
+d <-fread(f)
+d
+```
+
+
+* A second method that we will sometimes use to get data into
+  a `data.table` is as follows:
+
+```{r}
+s1 <- "family_id age_mother dob_child1 dob_child2 dob_child3
+               1         30 1998-11-26 2000-01-29         NA
+               2         27 1996-06-22         NA         NA
+               3         26 2002-07-11 2004-04-05 2007-09-02
+               4         32 2004-10-10 2009-08-27 2012-07-21
+               5         29 2000-12-05 2005-02-28         NA"
+
+DT <- fread(s1)
+DT
+```
+
+* This can be useful in a few odd circumstances. For
+  example, you may wish to copy some text in another program
+  and paste it over into your `R` session to turn it into a
+  `data.table`.
+  
+### Wide vs long format
+* The following `data.table` is in **long** format:
+
+```{r, echo=F}
+d <- fread('https://crossley.github.io/cogs2020/data/maze/d_long.csv')
+d
+```
+
+* The following `data.table` is in **wide** format:
+
+```{r, echo=F}
+d <- fread('https://crossley.github.io/cogs2020/data/maze/d_wide.csv')
+d
+```
+
+* Each format has its pros and cons, and you may find yourself
+  needing to switch between them even within the same dataset.
+  
+* To go from wide to long format you should use the `melt`
+  function from the `data.table` library.
+  
+* To go from long to wide format you should use the `dcast`
+  function from the `data.table` library.
+  
+* Using these functions is just a bit beyond the scope of this
+  lecture, but we will return later in the unit to learn about
+  them. If you are feeling confident in your use of
+  `data.table` then you may enjoy getting a little ahead of
+  the game by reading the following vignette:
+
+  [reshaping `data.table`
+  vignette](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html)
+
+<!--chapter:end:section_intro_to_data_table.Rmd-->
+

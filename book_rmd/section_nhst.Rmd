@@ -1,0 +1,116 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Hypothesis Testing
+
+## Learning objectives
+
+* Define and understand null hypothesis significance testing.
+
+* Define and understand **p-value**.
+
+* Define and understand **more extreme outcomes** in the context
+  of hypothesis testing.
+
+* Define and understand **critical value**.
+
+* Define and understand **rejection region**.
+
+* Define and understand **$1-\alpha\%$ confidence interval**.
+
+* Be able to perform hypothesis binomial tests and t-tests
+  manually (i.e., run through the 5 steps).
+
+* Understand when and how to use `binom.test()`.
+
+* Understand when and how to use `t.test()`.
+
+## Null Hypothesis Significance Testing
+
+We will unpack each of these 5 steps in the examples that
+follow. They are listed here for reference.
+
+1. Specify the null and alternative hypotheses ($H_0$ and
+   $H_1$) in terms of a population parameter $\theta$.
+
+2. Specify the type I error rate -- denoted by the symbol
+   $\alpha$ -- you are willing to tolerate.
+
+3. Specify the sample statistic $\widehat{\theta}$ that you will use to
+   estimate the population parameter $\theta$ in step 1 and state how
+   it is distributed under the assumption that $H_0$ is
+   true.
+
+4. Obtain a random sample and use it to compute the sample
+   statistic from step 3. Call this value
+   $\widehat{\theta}_{\text{obs}}$.
+
+5. If $\widehat{\theta}_{\text{obs}}$ or a **more extreme outcome 
+   is very unlikely to occur under the assumption that $H_0$ is true, then
+   reject $H_0$. Otherwise, do not reject $H_0$.
+
+
+## Two-tailed tests introduction
+
+- Last lecture, we learned how to perform one-tailed
+hypothesis tests. The hypothesis framing in those tests
+was as follows:
+
+$$
+H_0: \theta = c \\
+H_1: \theta < c \\
+\text{or} \\
+H_0: \theta = c \\
+H_1: \theta > c
+$$
+
+- The hypotheses of a two-tailed test takes the following
+form:
+
+$$
+H_0: \theta = c \\
+H_1: \theta \neq c  \\
+H_1: \theta < c \text{ or } \theta > c
+$$
+
+- As we will see in the following examples, the main
+difference between one-tailed and two-tailed tests is that
+the p-value gets contributions from both the lower and the
+upper tail of the sampling distribution.
+
+
+## Summary
+
+* The **p-value** is the probability of the outcome or **a
+more extreme outcome** occurring under the assumption that
+$H_0$ is true.
+  
+* What counts as a more extreme outcome is determined by $H_1$.
+
+* The **critical value** is the observed value for which
+  more extreme outcomes would lead us to reject $H_0$.
+
+* The **rejection region** is the set of all outcomes that
+  would lead us to reject $H_0$.
+
+<!-- * A **$1-\alpha\%$ confidence interval** is a range of -->
+<!--   values in which the true value of the parameter is -->
+<!--   $1-\alpha\%$ likely to reside. -->
+
+* `binom.test()` can be used to efficiently perform a
+  binomial test without manually labouring through the
+  5 steps.
+
+* Must do everything long-form if dealing with a Normal
+  sampling distribution (known variance).
+  
+* If the standard deviation of the original sampling distribution 
+  is not known, then it must be estimated, and the appropriate 
+  test to use is a t-test.
+  
+* A $t$ distribution has higher tails than a $Z$ distribution
+  but is otherwise very similar.
+  
+* `t.test()` can be used to efficiently perform a t-test
+  without manually labouring through the 5 steps.

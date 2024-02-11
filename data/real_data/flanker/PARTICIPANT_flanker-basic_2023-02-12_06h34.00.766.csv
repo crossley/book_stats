@@ -1,0 +1,10 @@
+﻿startKey.keys,startKey.rt,key_resp.keys,key_resp.corr,key_resp.rt,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,stimulus,condition,response,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,4.9654,right,1,1.6837,0,0,0,7,1,>>>>>,congruent,right,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,0,1.015,0,1,1,9,1,>><>>,incongruent,left,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.4835,0,2,2,5,1,>>>>>,congruent,right,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,0,0.3369,0,3,3,0,1,<<<<<,congruent,left,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,0,0.0239,0,4,4,2,1,<<<<<,congruent,left,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.0768,0,5,5,8,1,<<><<,incongruent,right,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,0,0.0565,0,6,6,4,1,<<<<<,congruent,left,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.0335,0,7,7,1,1,>>>>>,congruent,right,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,0,0.5032,0,8,8,6,1,<<<<<,congruent,left,,001,2023-02-12_06h34.00.766,flanker-basic,2021.2.3,MacIntel,60.0024001

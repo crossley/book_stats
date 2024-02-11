@@ -1,0 +1,11 @@
+﻿startKey.keys,startKey.rt,key_resp.keys,key_resp.corr,key_resp.rt,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,stimulus,condition,response,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,9.6441,right,1,1.8273,0,0,0,8,1,<<><<,incongruent,right,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,left,1,0.7272,0,1,1,4,1,<<<<<,congruent,left,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,left,1,0.4476,0,2,2,0,1,<<<<<,congruent,left,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.416,0,3,3,3,1,>>>>>,congruent,right,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,left,1,0.3993,0,4,4,2,1,<<<<<,congruent,left,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.3648,0,5,5,5,1,>>>>>,congruent,right,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.451,0,6,6,1,1,>>>>>,congruent,right,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,right,1,0.3539,0,7,7,7,1,>>>>>,congruent,right,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,left,1,0.4618,0,8,8,6,1,<<<<<,congruent,left,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001
+,,left,1,0.5163,0,9,9,9,1,>><>>,incongruent,left,Elizabeth Faulkner ,001,2022-05-30_14h16.18.308,flanker-basic,2021.2.3,MacIntel,60.0024001

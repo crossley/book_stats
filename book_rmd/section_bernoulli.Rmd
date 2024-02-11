@@ -1,0 +1,66 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Bernoulli random variables
+
+## Learning objectives
+
+* Define and understand **Bernoulli** random variables.
+
+## Bernoulli random variable
+
+### Definition
+A single sample from a any random variable that produces a
+dichotomous outcome is formally defined as a *Bernoulli*
+trial. To be a Bernoulli trial, a few conditions must be
+met:
+
+(1) Each trial yields one of the two outcomes usually called
+success ($S$) and failure ($F$).
+
+(2) For each trial, the probability of success $P(S)$ is the
+same and is denoted by $p = P(S)$. The probability of
+failure is then $q = P(F) = 1 - P(S)$ for each trial.
+
+(3) Trials are **independent**. The probability of success
+in a trial does not change given any amount of information
+about the outcomes of other trials.
+
+Bernoulli random variables are completely defined by the
+single parameter $p = P(S)$. If $X$ is a Bernoulli random
+variable then we would write:
+
+$X \sim Bernoulli(p)$
+
+### Probability distribution
+The probability distribution of a Bernoulli random variable
+is very simple. We simply need to indicate two probabilities
+as follows.
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+# Specify the probability of success
+p <- 0.3
+
+# On the y-axis, we want to plot the probability of the
+# possible outcomes (S and F)
+y <- c(0.3, 0.7)
+
+# On the x-axis, we want to indicate the outcome names
+x <- c('S', 'F')
+
+# To plot things with ggplot we need our data in a
+# data.table
+d <- data.table(x, y)
+
+ggplot(d, aes(x, y)) +
+  geom_segment(aes(xend=x, yend=0)) +
+  xlab('X = Bernoulli') +
+  ylab('Probability') +
+  theme(aspect.ratio = 1)
+```

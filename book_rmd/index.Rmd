@@ -1,0 +1,77 @@
+---
+title: "Data analysis and statistics for cognitive neuroscience"
+author: "Matthew J. Crossley"
+date: "`r Sys.Date()`"
+output:
+  bookdown::gitbook:
+    css: style.css
+    split_by: chapter
+    config:
+      toc:
+        depth: 2
+        collapse: section
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(data.table)
+library(ggpubr)
+library(ez)
+```
+
+# Introduction to the book
+First and foremost, this book is an active work in progress
+and is liable to change somehwat from week to week.  If you
+find errors, or if you find any section particularly
+confusion, please feel free to reach out to me for help.
+
+Statistics is often taught to the aspiring cognitive
+neuroscientist as a series of cookbook recipes, without
+imparting any deep understanding of the reasoning that
+generated those recipes in the first place. Too often I
+have seen the deer in headlights look on the newly minted
+graduate student when a dataset they are asked to analyse
+does not fit the mold of the recipes they have been
+previously exposed to. 
+
+The ambition of this book is to topple this situation on its
+head. We will repeatedly emphasize developing the reasoning
+skills necessary to understand the recipes, and to write our
+own recipes when called for. In the course of this book we
+will nevertheless encounter the usual suspects -- t-tests,
+ANOVAs, regressions, and so -- but you may find that we go
+deeper into fewer recipes rather than skimming the surface
+of many.
+
+We will use the R programming language throughout this book.
+We use R because it is mature; It is widely embraced in
+psychology and neuroscience; It is widely embraced in data
+science; It is relatively easy to learn. That said, it is
+not the only good option. Python, for example, is excellent.
+Matlab is also excellent -- though not as widely used and
+not as free -- but it is still widely used in academia. You
+might even run into more obscure languages here and there.
+At the end of the day, we have to pick one. R is a good
+place to start and it will offer you excellent return on
+investment.
+
+Just as R is a reasonable choice for a programming language,
+Rstudio is a reasonable choice for an integrated development
+environment (IDE). It is free, it is widely used, and it is
+well supported.  That said, there are numerous options for
+programming in R.  I have old-school computer science
+friends that edit code in a plain text file and execute it
+straight from a terminal.  There is absolutely nothing wrong
+with this.  Program where you like.
+
+But why bother learning to code now that chatGPT is so good
+at writing code for us? That is a very good question. The
+point I would like you to notice is how this question
+underscores the importance of developing our reasoning
+capacity both as statisticians and as programmers. The nuts
+and bolts of getting code to run or have some kind of
+statistical test or another performed on your data is only
+going to become easier and easier and more and more
+automated with increasing AI capabilities. But the reasoning
+behind the nuts and bolts will endure the test of time.
+

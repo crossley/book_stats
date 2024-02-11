@@ -1,0 +1,7 @@
+﻿startKey.keys,startKey.rt,key_resp.keys,key_resp.corr,key_resp.rt,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,stimulus,condition,response,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,1.6612,left,1,1.9045,0,0,0,2,1,<<<<<,congruent,left,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542
+,,right,1,0.3675,0,1,1,5,1,>>>>>,congruent,right,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542
+,,left,1,0.4174,0,2,2,6,1,<<<<<,congruent,left,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542
+,,right,1,0.3915,0,3,3,1,1,>>>>>,congruent,right,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542
+,,right,1,0.4271,0,4,4,7,1,>>>>>,congruent,right,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542
+,,right,1,0.4538,0,5,5,3,1,>>>>>,congruent,right,fdf,001,03-13-2023_20h30.26.317,flanker-basic,2021.2.3,Win32,59.06674542

@@ -1,0 +1,111 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Central limit theorem
+
+## Learning objectives
+
+* Understand the **central limit theorem** and the
+  **distribution of sample means** and how it depends on
+  sample size.
+
+## Central limit theorem
+
+The **central limit theorem** tells us that the sum of independent and
+identically distributed random variables approximates a Normal distribution.
+
+Let
+
+$\boldsymbol{Y} = \boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n$
+
+and
+
+$\boldsymbol{X}_i \sim \boldsymbol{D}$
+
+where $\boldsymbol{D}$ can have any distribution whatsoever. Then,
+
+$\boldsymbol{Y} \sim \mathcal{N}(\mu_{Y}, \sigma_{y}^2)$
+
+### Central limit theorem mean and variance
+
+One way to see where the mean and variance parameters come
+from in the central limit theorem is to use the following
+rule:
+
+Let 
+
+$Y \sim a X + b$
+
+Then:
+
+$\mathbb{E}\big[Y\big] = a \mathbb{E}\big[X\big] + E(b)$
+
+$\mathbb{Var}\big[Y\big] = (a^2) \mathbb{Var}\big[X\big]$
+
+
+### Applied to the distribution of sample sums
+\begin{align}
+
+\boldsymbol{Y} &= \boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n \\
+\\
+E(\boldsymbol{Y}) &= E(\boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n) \\
+    &= E(\boldsymbol{X}_1) + E(\boldsymbol{X}_2) + \dots + E(\boldsymbol{X}_n) \\
+    &= \mu_x + \mu_x + \ldots + \mu_x \\
+    &= n \mu_x \\
+\\   
+Var(\boldsymbol{Y}) &= Var(\boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n) \\
+    &= Var(\boldsymbol{X}_1) + Var(\boldsymbol{X}_2) + \dots + Var(\boldsymbol{X}_n) \\
+    &= \sigma_x^2 + \sigma_x^2 + \dots + \sigma_x^2 \\
+    &= n \sigma_x^2 \\
+    
+\end{align}
+
+\begin{align}
+\mu_{Y} &= n \mu_{X} \\
+\sigma_Y^2 &= n \sigma_X^2 \\
+\end{align}
+
+### Applied to the distribution of sample means
+
+\begin{align}
+
+\boldsymbol{Y} &= \frac{1}{n} (\boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n) \\
+\\
+E(\boldsymbol{Y}) &= E(\frac{1}{n} (\boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n)) \\
+    &= \frac{1}{n} 
+    (E(\boldsymbol{X}_1) + E(\boldsymbol{X}_2) + \dots + E(\boldsymbol{X}_n)) \\
+    &= \frac{1}{n} (\mu_x + \mu_x + \ldots + \mu_x) \\
+    &= \mu_x \\
+\\   
+Var(\boldsymbol{Y}) &= Var(\frac{1}{n} (\boldsymbol{X}_1 + \boldsymbol{X}_2 + \dots + \boldsymbol{X}_n)) \\
+    &= Var(\frac{1}{n^2} (Var(\boldsymbol{X}_1) + Var(\boldsymbol{X}_2) + \dots + Var(\boldsymbol{X}_n)) \\
+    &= \frac{1}{n^2} ( \sigma_x^2 + \sigma_x^2 + \dots + \sigma_x^2 ) \\
+    &= \frac{1}{n} \sigma_x^2 \\
+    
+\end{align}
+
+\begin{align}
+\mu_{Y} &= \mu_{X} \\
+\sigma_Y^2 &= \frac{1}{n} \sigma_X^2 \\
+\end{align}
+
+### Standard Error
+
+When applying the central limit theorem to the distribution of sample means, we
+get:
+
+\begin{align}
+\mu_{Y} &= \mu_{X} \\
+\sigma_Y^2 &= \frac{1}{n} \sigma_X^2 \\
+\end{align}
+
+When expressed in terms of standard deviation:
+
+\begin{align}
+\mu_{Y} &= \mu_{X} \\
+\sigma_y &= \frac{1}{\sqrt{n}} \sigma_X \\
+\end{align}
+
+Here, $\sigma_Y$ is called the **standard error of the mean (SEM)** and it is
+very commonly used to draw error bars on various plots.

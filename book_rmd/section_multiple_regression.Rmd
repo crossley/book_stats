@@ -1,0 +1,104 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Multiple Regression
+
+- Multiple regression works just like the simple linear regression we just
+  covered, but with multiple predictor variables.
+
+\begin{align}
+y_{i} &= \beta_{0} +
+    \beta_{1} x_{1_i} +
+    \beta_{2} x_{2_i} +
+    \dots +
+    \beta_{k} x_{k_i} +
+    \epsilon_{i} \\\\
+
+\boldsymbol{y} &= \beta_{0}
+               \begin{bmatrix}
+               1\\
+               1\\
+               \vdots\\
+               1
+               \end{bmatrix} +
+               \beta_{1}
+               \begin{bmatrix}
+               x_{1_1}\\ x_{1_2}\\ \vdots\\ x_{1_n}\\
+               \end{bmatrix} +
+               \beta_{2}
+               \begin{bmatrix}
+               x_{2_1}\\ x_{2_2}\\ \vdots\\ x_{2_n}\\
+               \end{bmatrix} +
+               \ldots +
+               \beta_{k}
+               \begin{bmatrix}
+               x_{k_1}\\ x_{k_2}\\ \vdots\\ x_{k_n}\\
+               \end{bmatrix} +
+               \begin{bmatrix}
+               \epsilon_1\\ \epsilon_2\\ \vdots\\ \epsilon_n\\
+               \end{bmatrix} \\\\
+
+\boldsymbol{y} &= \begin{bmatrix}
+               1 & x_{1_1} & x_{2_1} & \ldots & x_{k_1} \\
+               1 & x_{1_2} & x_{2_2} & \ldots & x_{k_2} \\
+               \vdots & \vdots & \dots & \dots \\
+               1 & x_{1_n} & x_{2_n} & \ldots & x_{k_n}
+               \end{bmatrix}
+               \begin{bmatrix}
+               \beta_{0} \\
+               \beta_{1} \\
+               \vdots \\
+               \beta_{k}
+               \end{bmatrix} +
+                              \begin{bmatrix}
+               \epsilon_1\\ \epsilon_2\\ \vdots\\ \epsilon_n\\
+               \end{bmatrix} \\\\
+
+\boldsymbol{y} &= \boldsymbol{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
+\end{align}
+
+- It's powerful to write these equations in matrix form (the last line above)
+  because it highlights how the two situations are essentially the same.. at
+  least mathematically.
+
+#### Example:
+
+```{r}
+
+library(data.table)
+library(ggplot2)
+## install.packages('scatterplot3d') ## If you need to
+library(scatterplot3d)
+
+rm(list=ls())
+
+d <- fread('https://crossley.github.io/cogs2020/data/eeg/epochs.txt')
+d[, V1 := NULL]
+
+## convert from wide to long format
+dd <- melt(d, id.vars=c('time', 'condition', 'epoch'))
+
+## pick out some columns randomly
+y <- dd[variable=='MEG 001', mean(value), .(epoch)][, V1]
+x1 <- dd[variable=='MEG 010', mean(value), .(epoch)][, V1]
+x2 <- dd[variable=='MEG 015', mean(value), .(epoch)][, V1]
+ddd <- data.table(y, x1, x2)
+
+## visualise possible linear relationship
+plot3d <- scatterplot3d(x1,
+                        x2,
+                        y,
+                        angle=55,
+                        scale.y=0.7,
+                        pch=16,
+                        color="red",
+                        main="Regression Plane")
+
+## fit a simple linear regression model
+fm <- lm(y ~ x1 + x2, data=ddd)
+plot3d$plane3d(fm, lty.box = "solid")
+summary(fm)
+cor(fm$fitted.values, y)^2
+
+```

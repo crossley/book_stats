@@ -1,0 +1,143 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Binomial random variables
+
+## Learning objectives
+
+* Define and understand **Binomial** random variables.
+
+## Binomial random variable
+
+### Definition
+Consider a fixed number $n$ of Bernoulli trials conducted
+with success probability $P(S)=p$ and failure probability
+$P(F)=q=1-p$ in each trial. Define the random variable $X$
+as follows:
+
+$X =$ the sum of the number of Successes from $n$ of the
+above Bernoulli trials.
+
+Then $X$ is called a binomial distribution with $n$ trials
+and success probability $p$. The binomial distribution is
+completely defined by two parameters, $n$ and $p$, and we
+can write:
+
+$X \sim Binomial(n,p)$
+
+### Probability distribution
+
+#### Population parameters: n=2, p=0.5
+
+Define the random variable $X$ as follows:
+
+$X$ = the number of *heads* in $2$ flips of a *fair* coin.
+
+Then $X \sim Binomial(n=2, p=0.5)$ 
+
+To obtain the probability distribution, we must compute the
+probability of every possible outcome that $X$ can produce.
+With $n=2$ flips, it is easy to see that there are 3
+possible outcomes (0, 1, or 2 heads) which are obtained with
+the following possible events and corresponding
+probabilities:
+
+\begin{align}
+P(X=0) &= P(TT) \\
+       &= P(T)P(T) \\
+       &= 0.5 \times 0.5 \\
+       &= 0.25 \\\\
+P(X=1) &= P(TH) + P(HT) \\
+       &= P(T)P(H) + P(H)P(T) \\
+       &= 0.5 \times 0.5 + 0.5 \times 0.5 \\
+       &= 0.25 + 0.25 \\
+       &= 0.5 \\\\
+P(X=2) &= P(HH) \\
+       &= P(H)P(H) \\
+       &= 0.5 \times 0.5 \\
+       &= 0.25
+\end{align}
+
+Above, we were able to write $P(TT)=P(T)P(T)$ because coin
+flips are statistically **independent**.
+
+In simple cases like this it's no big deal to compute the
+probabilities or all possible events by hand, but this
+approach quickly becomes intractable in real world
+situations. Luckily, `R` provides functions for essentially
+all the probability distributions you will likely ever find
+yourself using. In the case of a binomial distribution, we
+will use the `dbinom()` function as illustrated below.
+
+```{r, echo=F}
+# set Binomial parameter values
+n <- 2
+p <- 0.5
+
+# plot binomial probability distribution
+x <- 0:n
+y <- dbinom(x, n, p)
+d <- data.table(x,y)
+ggplot(d, aes(x=x,y=y)) +
+  geom_point() +
+  geom_segment(aes(xend=x, yend=0)) +
+  xlab('X = number successes in n=2 Bernoulli trials') +
+  ylab('Probability') +
+  theme(aspect.ratio = 1)
+ 
+```
+
+#### Population parameters: function of n and p
+
+Now lets run through this exercise with different $n$ and
+$p$ values.  Below, notice that when $p=0.1$, the
+distribution is skewed to the left. This makes sense because
+if the probability of success is very small, then the
+probability of achieving zero or only few successes is high.
+Similarly, notice that when $p=0.9$, the distribution is
+skewed to the right. The same logic applied in the previous
+sentence applies here. If the probability of success is very
+high, then we should expect many successes, and most of the
+probability will correspond to larger outcomes.
+
+```{r, echo=F}
+
+# Explore 3 levels each of n and p
+n_levels <- c(5, 15, 30)
+p_levels <- c(.1, .5, .9)
+
+# Below, we use a couple of for loops to iterate through the
+# possible combinations of n and p defined above. We will
+# want to plot them all at once, so we will store each
+# probability distribution computed in a list (d_list) for
+# later use.
+d_list = vector('list', 9)
+for(i in 1:3) {
+  for(j in 1:3) {
+    n <- n_levels[i]
+    p <- p_levels[j]
+    x <- 0:n
+    y <- dbinom(0:n, n, p)
+    d <- data.table(n, p, x, y)
+    
+    # On the following line, j + 3*(i-1) is a method to
+    # convert two indices (i and j) into a single index.
+    # This is necessary because d_list is one-deminsional.
+    d_list[[j + 3*(i-1)]] = d
+  }
+}
+
+# If you have a bunch of data.tables with the same format
+# stored in a list then you can use the function rbindlist()
+# to stack them into a single longer data.table
+d <- rbindlist(d_list)
+
+ggplot(d, aes(x=x, y=y)) +
+    geom_point() +
+    geom_segment(aes(xend=x, yend=0)) +
+    xlab('X = number successes in n Bernoulli trials') +
+    ylab('Probability') +
+    facet_grid(n~p)
+
+```

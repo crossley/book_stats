@@ -1,0 +1,91 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+
+# Experiment Design
+This chapter outlines fundamental concepts in experiment
+design in psychology and cognitive science. It covers the
+differences between between-subjects and within-subjects
+designs, repeated measures, and mixed designs. It also
+offers some key considerations for choosing between these
+types of designs.
+
+## What is experiment design?
+Experiment design refers to the structure of a study that
+determines how data are to be collected, analyzed, and
+interpreted. The design of an experiment greatly influences
+how researchers draw meaningful conclusions from
+experimental data..
+
+### Between-subjects vs within-subjects
+Consider a random variable $X$ defined as the number of
+neurons in a rat prefrontal cortex, and another random
+variable $Y$ defined as the number of neurons in a rat
+cerebellum. Both $X$ and $Y$ are linked to the same
+population (i.e., all rats in the universe). If we draw one
+random sample from $X$ and one random sample from $Y$ using
+a different sample of rats for each, then we say our
+experiment design is **between-subjects**. If instead we
+draw one random sample from $X$ and another random sample
+from $Y$ using the same sample of rats, then we say our
+experiment design is **within-subjects**.
+
+- **Between-Subjects:** Measurements for different
+  experimental conditions are taken between different
+  participants. 
+
+- **Within-Subjects:** Measurements for different
+  experimental conditions are taken from within the same
+  participants.
+
+### Repeated measures
+In a **repeated measures** experiment design, multiple
+measurements are obtained from the same level of some
+experimental factor (but not necessarily the same subjects).
+At this stage, this is all a bit jargon-y -- it will fall
+into place more naturally in later chapters -- but the thing
+to notice is that a **within-subjects** experiment design is
+also a **repeated measures** experiment design, whereas a
+**between-subjects** design is not.
+
+### Mixed Designs
+**Mixed designs** have  at least one experimental factor as
+a between-subjects variable and one as a within-subjects
+variable. 
+
+### Why choose between- or within-subjects?
+Between-sujects and within-subjects designs are both used
+frequently and each come with their own set of trade-offs.
+
+- Carryover effects: In a within-subjects design, the
+  participant's response to one treatment may influence
+  their response to a subsequent treatment. This is known
+  as a **carryover effect**. Between-subjects designs are
+  immune to this problem.
+
+- Statistical power: Within-subjects designs are generally
+  more powerful than between-subjects designs. This is
+  because within-subjects designs allow for the
+  participant to serve as their own control, which reduces
+  the amount of variability in the data. To see this, note
+  that two measurements from person A are likely to be more
+  similar than two measurements from person A and person B.
+
+- Cost: Within-subjects designs are often more expensive to
+  implement than between-subjects designs. This is because
+  within-subjects designs require more time and resources
+  to collect data from the same participant multiple times.
+
+- Ethical considerations: Within-subjects designs may be more
+  ethical than between-subjects designs. This is because
+  within-subjects designs require fewer participants to
+  achieve the same statistical power as between-subjects
+  designs. Fewer participants means fewer people exposed to
+  the risks of participating in a study.
+
+- Generalizability: Between-subjects designs are generally
+  more generalizable than within-subjects designs. This is
+  because within-subjects designs are more likely to be
+  influenced by the specific characteristics of the
+  participants.
+

@@ -1,0 +1,45 @@
+/* Basic styles to mimic the Flatly theme from Bootswatch */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #373A36;
+  background-color: #EDEBE5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #373A36;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+a, a:visited {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #2980b9;
+}
+

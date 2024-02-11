@@ -1,0 +1,164 @@
+```{r echo=F, message=F, warning=F}
+rm(list=ls())
+```
+# What is statistics?
+This chapter introduces many of the core concepts underlying
+statistical thinking. It covers the idea of descriptive
+versus inferential statistics, the relationship between
+samples and populations, the concept of a random variable,
+the difference between descriptive and inferential
+statistics. It lays the groundwork for understanding the
+broader role of statistics in experiment design and data
+interpretation.
+
+## Casual definition
+- Very roughly speaking, we can think of statistics as a
+  mathematical tool for describing data using **descriptive
+  statistics** and for making decisions on the basis of data
+  using **inferential statistics**.
+
+- Visualising the data and computing summary statistics like
+  means and standard deviations are standard approaches for
+  descriptive statistics.
+
+- Using Null Hypothesis Significance Testing (NHST) is the
+  standard approach for inferential statistics.
+
+## Why are statistics necessary?
+- Statistical methods are useful whenever the outcomes of an
+  experiment you would like to summarise and interpret are
+  at least a little bit random.
+
+- For example, imagine trying to determine if a coin is fair
+  coin (i.e., equal probability of landing heads as landing
+  tails) or not. Can you make a good decision after just one
+  flip? Certainly not. This is because you know that the
+  outcome of each flip is random, so seeing one measly flip
+  tells you next to nothing. Rather, you need to flip it a
+  bunch of times, and then think very carefully about the
+  pattern of outcomes that you observed. The *thinking very
+  carefully* part is where statistics comes in to save the
+  day.
+
+## More formal definition
+
+- In statistics, we have special terminology to refer the
+  process that generates random outcomes of an experiment
+  --- we call it a **random variable**. Any particular
+  single outcome or sometimes set of random outcomes from an
+  experiment is called a **sample** from the random
+  variable.
+
+### Core concept
+- **random variable**: Data generating process.
+
+- **sample**: A set of measurements obtained from a random
+  variable.
+
+- **descriptive statistics**: Summary of a sample.
+
+- **inferential statistics**: A method to make inferences /
+  educated guesses about the *true* state of the random
+  variable that generated a sample.
+
+### Example 
+Suppose I am interested in knowing about spontaneous number
+generation in the human mind.  I perform an experiment in
+which I ask everybody in the room to shout out any number
+they wish. To help me think about things, I compute the
+average of all numbers I obtained.  After carefully thinking
+about things, I make a decision about what numbers I think
+are most likely to come from this experiment in the future.
+
+- The **random variable** in this example is the process
+  that generated the data. That is, me asking people to
+  shout out any number.
+
+- The **sample** is the set of numbers I actually obtained.
+
+- I computed the average of those numbers for reasons I
+  haven't really explained yet, but in any case, this would
+  be a **descriptive statistic**.
+
+- The method that I made a decision about what numbers I
+  think I am likely to get in the future, should I ever do
+  this experiment again and which I also have not yet
+  explained, would be **inferential statistics**.
+
+### More general example
+In statistics, it is safe to think of all data as coming
+from an experiment (i.e., a random variable). The act of
+performing an experiment is equivalent to simply assigning
+numbers to events that we observe in the world.  These
+numbers are called a **sample**. In general, if we perform
+an experiment in which we observe $n$ outcomes, then our
+sample is written as:
+
+$$
+\boldsymbol{x} = ( x_1, x_2, x_3, ..., x_n )
+$$
+
+For example, we might perform an experiment where we observe
+a rat navigate a maze several times, and measure the time to
+completion for each maze run. Suppose that we observed 10
+runs with the following times in seconds:
+
+$$
+\boldsymbol{x} = ( 52.38, 55.41, 70.88, 43.30, 50.15, 41.99, 36.82, 34.05, 52.70, 72.25 )
+$$
+
+We would say that $\boldsymbol{x}$ is our sample, and in
+this case consists of **continuous** data observations. This
+is because we are measuring time, and time can yield any
+real number as a measurement. If instead we were to measure
+the number of wrong turns, our observations would be
+**discrete**, and might look like this:
+
+$$
+\boldsymbol{x} = ( 8, 2, 10, 7, 3, 1, 6, 9, 5, 4 )
+$$
+
+If somebody asks you about your experiment, it is often not
+very practical to list all the numbers that you observed.
+Instead, you would want some way to concisely summarise the
+sample that you obtained. In a later chapter, we will cover
+some basic **descriptive statistics** that do exactly this.
+
+In general, we may not want to merely describe our data, but
+we may want to use it to help us make decisions. For
+example, suppose that any rat that can reliably run this
+maze in under 50 seconds is considered a super-mega-genius.
+Should you put in the super-mega-genius paperwork for this
+rat? Later in the course, we will go deeper into the
+**inferential statistics** that will help us in this
+scenario, but we will begin developing an intuition now.
+
+As it turns out, answering this question intelligently
+requires using our **sample** to make inferences about a
+**population**, which in this case can be roughly thought of
+as the set of all possible maze times and their relative
+frequencies that you will ever observe if you run this
+experiment forever.
+
+For example, if you perform your experiment another two
+times, you might end up with the following samples:
+
+$$
+\boldsymbol{x_1} = ( 52.38, 55.41, 70.88, 43.30, 50.15, 41.99, 36.82, 34.05, 52.70, 72.25 )
+$$
+$$
+\boldsymbol{x_2} = ( 62.36, 53.89, 53.95, 33.81, 61.12, 61.48, 36.89, 49.45, 52.50, 50.95 )
+$$
+$$
+\boldsymbol{x_3} = ( 52.04, 48.28, 48.12, 58.89, 51.76, 42.88, 49.04, 60.41, 53.99, 70.06 )
+$$
+
+Each sample is composed of very similar but not identical
+observations. A **random variable** is a process that
+generates outcomes for a particular experiment, a
+**population** is the collection of all possible outcomes,
+and a **sample** is a particular outcome obtained when the
+experiment is performed (i.e., $\boldsymbol{x_1}$,
+$\boldsymbol{x_2}$ and $\boldsymbol{x_3}$ above). In
+statistics, we want to estimate properties of the
+**population** by using our **sample**.

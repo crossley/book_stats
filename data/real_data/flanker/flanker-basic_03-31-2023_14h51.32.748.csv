@@ -1,0 +1,11 @@
+﻿startKey.keys,startKey.rt,key_resp.keys,key_resp.corr,key_resp.rt,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,stimulus,condition,response,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,0.8503,right,0,1.5459,0,0,0,9,1,>><>>,incongruent,left,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,right,0,0.2501,0,1,1,6,1,<<<<<,congruent,left,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,0,0.1141,0,2,2,7,1,>>>>>,congruent,right,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,right,1,0.0857,0,3,3,5,1,>>>>>,congruent,right,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,0,0.0435,0,4,4,1,1,>>>>>,congruent,right,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,0,0.0207,0,5,5,8,1,<<><<,incongruent,right,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,0,0.1359,0,6,6,3,1,>>>>>,congruent,right,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,1,0.099,0,7,7,0,1,<<<<<,congruent,left,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,left,1,0.2007,0,8,8,4,1,<<<<<,congruent,left,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234
+,,right,0,0.0317,0,9,9,2,1,<<<<<,congruent,left,现在出现在,001,03-31-2023_14h51.32.748,flanker-basic,2021.2.3,Win32,60.27364234

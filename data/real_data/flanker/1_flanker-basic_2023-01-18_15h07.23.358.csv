@@ -1,0 +1,5 @@
+﻿startKey.keys,startKey.rt,key_resp.keys,key_resp.corr,key_resp.rt,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,stimulus,condition,response,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,8.3989,right,1,0.5831,0,0,0,1,1,>>>>>,congruent,right,1,001,2023-01-18_15h07.23.358,flanker-basic,2021.2.3,MacIntel,59.99160118
+,,right,0,0.0629,0,1,1,6,1,<<<<<,congruent,left,1,001,2023-01-18_15h07.23.358,flanker-basic,2021.2.3,MacIntel,59.99160118
+,,right,1,0.0192,0,2,2,7,1,>>>>>,congruent,right,1,001,2023-01-18_15h07.23.358,flanker-basic,2021.2.3,MacIntel,59.99160118
+,,right,0,0.034,0,3,3,0,1,<<<<<,congruent,left,1,001,2023-01-18_15h07.23.358,flanker-basic,2021.2.3,MacIntel,59.99160118
