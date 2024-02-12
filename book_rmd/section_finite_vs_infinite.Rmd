@@ -1,0 +1,21 @@
+## Finite vs Infinite
+Populations and sample spaces can be composed of either
+finite or infinite sets.  In another rather staight-forward
+use of terms, they are finite if they contain a finite
+number of things and they are called infinite if they
+contain an infinite number of things. 
+
+For example, the population of all neurons in a particular
+human brain is finite because -- while there are certainly a
+lot of them -- their number is finite.   As a more
+tradtiional example, the sample space of rolling a six-sided
+die is finite, consisting of just six possible outcomes: {1,
+2, 3, 4, 5, 6}.
+
+In contrast, the population of times a specific neuron
+generates an action potential after stimulus onset is
+infinite. To see this consider simply consider the number of
+possible times that exist between 1.0 and 1.1 seconds. It
+could be 1.01, 1.001, 1.0001, and so on. No matter how small
+you make an increment, you can always make another increment
+smaller than the last. This leads to infinity.

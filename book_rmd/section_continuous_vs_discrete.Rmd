@@ -1,27 +1,25 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
-### Continuous vs discrete data
-Random variables are processes that generate data in an
-experiment performed by sampling from a particular
-population. The data that random variables produce can be
-either discrete or continuous. In a rather straight-forward
-use of terms, a random variable that produces discrete data
-is called a **discrete random variable** and a random
-variable that produces continuous data is called a
-**continuous random variable**.
+## Continuous vs discrete
+The data that random variables produce can be either
+discrete or continuous. In a rather straight-forward use of
+terms, a random variable that produces discrete data is
+called a **discrete random variable** and a random variable
+that produces continuous data is called a **continuous
+random variable**.
 
 For example, consider the random variable $X$ defined as a
 process that returns the body lengths in cm of rats drawn
-from a **population** defined as all rats in the universe. A
+from a **population** defined as all rats in the universe. 
+The **sample space** for this random variable is all real
+numbers greater than zero.
+
+A
 sample from this random variable might look as follows:
 $$
 \boldsymbol{x} = (2.877970, 7.497241, 5.455286, 4.903578, 7.806955)
 $$
-Here, $X$ is clearly a continuous random variable because it
-seems that any non-zero value can be obtained when sampling
-from it.
+Here, $X$ is a continuous random variable because it seems
+that any value greater than zero can be obtained when
+sampling from it.
 
 As another example, consider the random variable $X$ defined
 as a process that returns the number of neurons in a rat
@@ -29,7 +27,31 @@ cerebral cortex drawn from the same population as in the
 previous example. A sample from this random variable might
 look as follows:
 $$
-\boldsymbol{x} = (21e6 21e6 18e6 20e6 22e6)
+\boldsymbol{x} = (21e6, 21e6, 18e6, 20e6, 22e6)
 $$
-Here, $X$ is clearly a discrete random variable because that
-only integer values can be obtained when sampling from it.
+Here, $X$ is a discrete random variable because that only
+integer values can be obtained when sampling from it.
+
+As a third example, we might perform an experiment where we
+observe a rat navigate a maze several times, and measure the
+time to completion for each maze run. Suppose that we
+observed 10 runs with the following times in seconds:
+$$
+\boldsymbol{x} = (52.38, 55.41, 70.88, 43.30, 50.15, 41.99, 36.82, 34.05, 52.70, 72.25)
+$$
+Here, $X$ is a again a continuous random variable because
+time can take any real number value.
+
+However, if instead of measuring time, we measured the
+number of turns the rat took to complete the maze, then our
+sample might look like this:
+$$
+\boldsymbol{x} = (8, 2, 10, 7, 3, 1, 6, 9, 5, 4)
+$$
+Here, $X$ is a **discrete** random variable. 
+
+In summary, **continuous random variables** produce
+*continuous data* and **discrete random variables** produce
+*discrete data*. Continuous data can take any real number
+value, while discrete data can only take a discrete set of
+values.

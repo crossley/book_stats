@@ -1,0 +1,44 @@
+## Sampling from random variables
+When we run an experiment and gather data we say that we are
+**sampling** or that we are **drawing samples** from the
+random variable that generates data in our experiment. 
+
+Suppose we have a two electrodes implanted in a brain -- one
+in region A and another in region B -- and we want to know
+if region A causes firing in region B. Our approach is to
+inject some excitatory current into region A and measure the
+effect on the firing rate of region B. In principle, if we
+observe more spike in region B when we inject current in
+region A, then we have evidence that region A drives region
+B. However, there's a bit of a problem. Region B has some
+baseline firing rate that is not zero. So, if we observe
+spikes in region B, we can't be sure if they were caused by
+the current we injected into region A or if they were just
+spontaneous spikes. We need to somehow determine if the
+spikes in region B are more than we would expect by chance.
+
+Our approach is to use a random variable $X$ to model the
+number spikes would expect to see in region B during region
+A stimulation. That is, $X$ is the process that generates
+the number of spikes we observe in region B during region A
+stimulation.  In this case, the sample space of $X$ is
+composed of all possible number of spikes we might observe
+in our experiment, ${0, 1, 2, 3, ... }$. That we can figure
+out just by thinking about it.  But what we really want to
+know is the probabily distribution of $X$. In eseence, this
+would allow us to say whether or not $X$ is more likely to
+generate a spike (or gennerate more spikes) during the
+stimulation of region A. This probability distribution is
+set by the universe and we unfortunately cannot know it just
+by thinking about it. **The best we can do is run our
+experiment and try to use the data that we get to make a
+best guess about what we think this probability
+distribution** is.
+
+This  last sentence is very important. We run our experiemnt
+and get some data. That is, we obtain samples from our
+random variable. We then must use these samples to make a
+good guess about the probability distributino of random
+variable that gave us the data in the first place. **In
+essence, we use samples to estimate properties of random
+variables.**

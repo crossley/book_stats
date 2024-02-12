@@ -1,6 +1,3 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
 # What is statistics?
 This chapter introduces many of the core concepts underlying
 statistical thinking. It covers the idea of descriptive
@@ -22,7 +19,7 @@ interpretation.
   descriptive statistics.
 
 - Using Null Hypothesis Significance Testing (NHST) is the
-  standard approach for inferential statistics.
+  conventional approach for inferential statistics.
 
 ## Why are statistics necessary?
 - Statistical methods are useful whenever the outcomes of an
@@ -41,15 +38,13 @@ interpretation.
   day.
 
 ## More formal definition
-
-- In statistics, we have special terminology to refer the
+- In statistics, we have special terminology to refer to the
   process that generates random outcomes of an experiment
   --- we call it a **random variable**. Any particular
-  single outcome or sometimes set of random outcomes from an
-  experiment is called a **sample** from the random
+  single outcome or sometimes a set of random outcomes from
+  an experiment is called a **sample** from the random
   variable.
 
-### Core concept
 - **random variable**: Data generating process.
 
 - **sample**: A set of measurements obtained from a random
@@ -61,14 +56,23 @@ interpretation.
   educated guesses about the *true* state of the random
   variable that generated a sample.
 
-### Example 
-Suppose I am interested in knowing about spontaneous number
-generation in the human mind.  I perform an experiment in
-which I ask everybody in the room to shout out any number
-they wish. To help me think about things, I compute the
-average of all numbers I obtained.  After carefully thinking
-about things, I make a decision about what numbers I think
-are most likely to come from this experiment in the future.
+- For example, Suppose I am interested in knowing about
+  spontaneous number generation in the human mind.  I
+  perform an experiment in which I ask everybody in the room
+  to shout out any number they wish. The result of this
+  request is a lot of numbers and looking at them all at
+  once is a bit overwhelming.  To help me think about
+  things, I compute the average.  After carefully thinking
+  about things, I make a decision about what numbers I think
+  are most likely to come from this experiment in the
+  future. In particular, I know that the numbers I will get
+  are almost certainly going to be different numbers, but I
+  also suspect that they are likely to be close to the
+  average I just computed.
+
+--
+TODO: ask chatgpt to generate numbers and add to the file
+--
 
 - The **random variable** in this example is the process
   that generated the data. That is, me asking people to
@@ -76,23 +80,20 @@ are most likely to come from this experiment in the future.
 
 - The **sample** is the set of numbers I actually obtained.
 
-- I computed the average of those numbers for reasons I
-  haven't really explained yet, but in any case, this would
-  be a **descriptive statistic**.
+- The average of those numbers is a **descriptive
+  statistic**.
 
-- The method that I made a decision about what numbers I
-  think I am likely to get in the future, should I ever do
-  this experiment again and which I also have not yet
-  explained, would be **inferential statistics**.
+- The **method** that I use to make a decision about numbers
+  that I think I am likely to get in the future, should I
+  ever do this experiment again is the main topic of
+  **inferential statistics**.
 
 ### More general example
 In statistics, it is safe to think of all data as coming
-from an experiment (i.e., a random variable). The act of
-performing an experiment is equivalent to simply assigning
-numbers to events that we observe in the world.  These
-numbers are called a **sample**. In general, if we perform
-an experiment in which we observe $n$ outcomes, then our
-sample is written as:
+from an experiment (i.e., a random variable). These numbers
+are called a **sample**. In general, if we perform an
+experiment in which we observe $n$ outcomes, then our sample
+is written as:
 
 $$
 \boldsymbol{x} = ( x_1, x_2, x_3, ..., x_n )
@@ -107,16 +108,7 @@ $$
 \boldsymbol{x} = ( 52.38, 55.41, 70.88, 43.30, 50.15, 41.99, 36.82, 34.05, 52.70, 72.25 )
 $$
 
-We would say that $\boldsymbol{x}$ is our sample, and in
-this case consists of **continuous** data observations. This
-is because we are measuring time, and time can yield any
-real number as a measurement. If instead we were to measure
-the number of wrong turns, our observations would be
-**discrete**, and might look like this:
-
-$$
-\boldsymbol{x} = ( 8, 2, 10, 7, 3, 1, 6, 9, 5, 4 )
-$$
+We would say that $\boldsymbol{x}$ is our sample. 
 
 If somebody asks you about your experiment, it is often not
 very practical to list all the numbers that you observed.
@@ -140,6 +132,11 @@ as the set of all possible maze times and their relative
 frequencies that you will ever observe if you run this
 experiment forever.
 
+* **population**: The set of all possible outcomes of an
+  experiment.
+* **sample**: A particular outcome obtained when the
+  experiment is performed.
+
 For example, if you perform your experiment another two
 times, you might end up with the following samples:
 
@@ -162,3 +159,19 @@ experiment is performed (i.e., $\boldsymbol{x_1}$,
 $\boldsymbol{x_2}$ and $\boldsymbol{x_3}$ above). In
 statistics, we want to estimate properties of the
 **population** by using our **sample**.
+
+## Summary of key concepts
+- **random variable**: A process that generates random
+  outcomes.
+
+- **population**: The set of all possible outcomes of an
+  experiment.
+
+- **sample**: A set of measurements obtained from a random
+  variable.
+
+- **descriptive statistics**: Summary of a sample.
+
+- **inferential statistics**: A method to make inferences /
+  educated guesses about the *true* state of the random
+  variable that generated a sample.

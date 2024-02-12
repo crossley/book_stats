@@ -1,21 +1,10 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
-# Experiment Design
-This chapter outlines fundamental concepts in experiment
+## Between-subject vs within-subject
+This section outlines fundamental concepts in experiment
 design in psychology and cognitive science. It covers the
 differences between between-subjects and within-subjects
 designs, repeated measures, and mixed designs. It also
 offers some key considerations for choosing between these
 types of designs.
-
-## What is experiment design?
-Experiment design refers to the structure of a study that
-determines how data are to be collected, analyzed, and
-interpreted. The design of an experiment greatly influences
-how researchers draw meaningful conclusions from
-experimental data..
 
 ### Between-subjects vs within-subjects
 Consider a random variable $X$ defined as the number of
@@ -88,4 +77,3 @@ frequently and each come with their own set of trade-offs.
   because within-subjects designs are more likely to be
   influenced by the specific characteristics of the
   participants.
-

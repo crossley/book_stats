@@ -1,0 +1,121 @@
+# Random variables
+My undergraduate degree is in physics. Often, when this
+comes up in conversation others have commented what a large
+jump it must have been to go from physics to cognitive
+neuroscience.  I can definitely understand where this
+feeling must come from, but my experience of the transition
+has been only a very minor gaps. Ultimately we are all
+scientists, and as such, our primary objective is to uncover
+and understand the underlying processes that govern the
+physical universe. 
+
+Physicists are often equipped with one or many very good
+mathemtical descriptions of the universe. In fact, the
+physicist is very lucky becuase these mathematical
+descriptions don't just describe the observations that have
+already been obtained about our universe, but they go even
+farther by specifying a process that could have generated
+those observations. By specifiying a process, these
+descriptions generate predictions about the outcomes of
+future experiments. So you can see that these descriptions
+are actually theories of the laws of physics. 
+
+We cognitive neuroscientists are in the same boat but the
+physisict is far luckier than us in at least one respect.
+The systems they study are in many cases far simpler to
+describe then the behaviour of the human nervous system.
+Where the phenomena they seek to describe are amenable to
+fine print descirptions of process, we cognitive
+neuroscientists are often left much more in the dark. This
+doesn't mean that we give up. It just means that we have to
+rely more heavily on statistical thinking than our physicist
+counterparts. 
+
+The key idea I would like you to take away from these
+ramblings is that every time you perform a statistical test
+(e.g., t-test, ANOVA, regression, etc.) you are in principle
+building and testing a potential model of the universe. It's
+not as deep as the models physicists get to play with
+becuase a statistical model doesn't specifiy the process
+through which observations are generated.  Instead, a
+statistical model simply specifies the outcomes that you are
+likely to observe if a particular model is true. Or
+conversely, it can tell you how likely a particular set of
+observations was to come from a particular model. The idea
+is that by doing very careful statistical thinking, we will
+be able to narrow down our understanding of the sort of
+outcomes that characterise our little sub-area of cognitive
+neuroscience, and this will eventually enable us to build
+models that do specify process as our physicist colleagues
+enjoy.
+
+At the heart a statistical model is the concept of a
+**random variable**. You need to think a little bit
+abstractly to really understand what a random variable is.
+It is tempting to think of a random variable as a single
+number than is somehow randomly chosen. Or perhaps your
+intuition tells that a random variable is somehow something
+that you can hold in your hands or know directly.
+Unfortunately, these intuitions are not quite right. Rather,
+**a random variable is a process that generates data**.  It
+is therefore conceptually tied to the laws that govern the
+physical universe themselves and also to the speciifc
+details of the experiment that the data was collected from.
+because all data that we might ever observe will be subject
+to these laws. The connectino to the specific experiment
+comes from the fact it is the details of our experiment that
+dictates what exactly we measure.
+
+## Defining traits of random variables
+* **Population** and **Sample space**: The entire set of
+  things under study is a **population** . Here, a "thing"
+  can be just about anything. It can refer to people with a
+  specific demographic, neurons in a particular part of the
+  primate brain, or even the possible outcomes of a
+  partciular experiment. A population can be finite or
+  infinite, and it can be discrete or continuous (more on
+  these terms soon).  Generally, when we conduct a study,
+  the population is what we aim to learn something about. 
+
+  A **sample space** is the set of all possible outcomes of
+  an experiment. For instance, the sample space of a coin
+  toss is ${Heads, Tails}$, the sample space for rolling a
+  six-sided die is ${1, 2, 3, 4, 5, 6}$, and the sample
+  space of both tossing a coin and rolling a die is ${H1,
+  H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6}$. But like
+  populations, sample spaces can be finite or infinite, and
+  continuous or discrete.
+
+  Populations and sample spaces are clearly quite similar
+  but there are some graspable distinctions. In particular,
+  a popoulation isn't tied very strongly to a particular
+  experiment whereas a sample space is.
+
+* **Probability distribution**: A function that assigns a
+  probability to each possible outcome in the sample space.
+  **Every random variable is in essence defined by its
+  probability distribution.** This makes probability
+  distributions one of most important concepts in
+  statistics. Since we use random variables as our models of
+  the brain universe, and every random variable is defined
+  by its probability distribution, it follows that
+  probability distributions are the things that allow us to
+  make predictions about the outcomes of future experiments.
+
+  Sometimes we won't be in a very good position to know or
+  observe the entire probability distribution of a random
+  variable so we might instead attempt to work with only
+  pieces of the distribution. For example, we might focus on
+  the central tendency of the distribution (i.e. ,what
+  observations does it produce the most of), or the spread
+  of the distribution (i.e., how much do the observations
+  vary).
+
+Both of the defining traits I've emphasised above require
+further explanation to be fully understood. We will need to
+build a solid understanding of what it means for a
+population or a sample space to be infinite vs finite; what
+it means for it to be continuous vs discrete; and how to go
+about specifying a probability distribution. These topcis
+will lead us down the road of probability theory and
+experiment design.
