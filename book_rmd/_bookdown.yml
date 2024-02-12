@@ -11,7 +11,9 @@ rmd_files: [
   "section_continuous_vs_discrete.Rmd",
   "section_finite_vs_infinite.Rmd",
   "section_sampling.Rmd",
-  "section_between_vs_within.Rmd",
+  "section_sampling_examples.Rmd",
+  #######
+  "section_between_vs_within.Rmd", # not exactly sure where to put this
   #######
   "section_basic_descriptive_stats.Rmd",
   "section_probability_and_random_variables.Rmd",

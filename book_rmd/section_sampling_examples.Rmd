@@ -1,0 +1,181 @@
+## Example: Sampling from a simple discrete random variable
+Consider a random variable $X$ defined as the number of
+correct responses a participant gives in a short memory
+recall test. Suppose that in this test, participants are
+shown a list of five words for a brief period and then asked
+to recall as many words as possible after a short delay.
+The sample space of $X$ is ${0, 1, 2, 3, 4, 5}$. We can see
+that the sample space of $X$ is both discrete and finite.
+
+We cannot know with 100% certainty the true probability
+distribition for $X$. However, as an eaxmple, lets suppose
+that some higher power has given us this information and it
+looks as follows:
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+# Define the sample space
+x <- c(0, 1, 2, 3, 4, 5)
+
+# Define the probability distribution
+y <- c(0.1, 0.25, 0.3, 0.25, 0.1)
+
+# build a data.table for ggplot
+d <- data.table(x, y)
+
+# plot the probability distribution
+ggplot(d, aes(x, y)) +
+  geom_segment(aes(xend=x, yend=0)) +
+  xlab('X=x') +
+  ylab('P(X=x)') +
+  theme(aspect.ratio = 1)
+```
+
+The above plot is called a **probability distribution**. It
+shows possible outcomes of the random variable $X$ on the
+x-axis and the probability of each outcome on the y-axis.
+There are a few subtle details about this plot that we will
+cover in a later section. For now, lets focus on the most
+important aspect: The taller the bar,, the more likely the
+corresponding outcome is to occur. If this was the true
+probability distribution for $X$, and we performed out
+experiment a few times, we might get:
+
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+# Define the sample space
+x <- c(0, 1, 2, 3, 4, 5)
+
+# Define the probability distribution
+y <- c(0.1, 0.25, 0.3, 0.25, 0.1)
+
+# draw 1000 samples from the distribution
+n <- 1000
+samples <- sample(x, n, replace=TRUE, prob=y)
+samples[1:5]
+```
+
+Note that every time we ran our experiment we get different
+results. Recall that this is the essence of what it means
+for $X$ to be a random variable. Also note that it is
+difficult to get a good sense of the overall pattern of the
+results by just looking at the first few. Rather, we need to
+look at the results of many.  If we performed our experiment
+many times -- many more times than would be conventient to
+print the results in line (say $n=1000$) -- then we need a
+better way to visualize the results. With discrete random
+variables a good way to do this is to use a dotplot.
+
+```{r, echo=F}
+# plot a dotplot of the samples
+ggplot(data.table(samples), aes(samples)) +
+  geom_dotplot(binwidth=1) +
+  xlab('X=x') +
+  ylab('Frequency') +
+  theme(aspect.ratio = 1)
+```
+
+We can see that the most common outcome is 2, which is what
+we would expect given that the peak of the probability
+distribution occurs at this value, but we also get many
+other outcomes. In general, the count of occurrences of each
+outcomee is about proportional to the height of the bar in
+the probability distribution. This is the essence of the
+concept of a probability distribution.
+
+## Example: Sampling from a simple continuous random variable
+Consider a random variable $X$ defined as the reaction time
+(in seconds) of participants in an experiment where they are
+asked to press a button as soon as they see a light flash on
+a screen.  Here, $X$ is a continuous random variable because
+it can take any value that is greater than zero. Of course,
+as an experimenter, you probably don't want to wait around
+for infinity seconds for your participant to finish, so
+there are some practical cutoffs. Those can in principle be
+baked into to the analysis for now lets keep our lives
+simple and ignore them. Again, lets further suppose that
+some higher power has given us knowledge of the true
+probability distribution for $X$. 
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+# Define the sample space
+x <- seq(0, 2, 0.01)
+
+# Define the probability distribution as an F-distribution
+y <- df(x, 5, 2)
+
+# build a data.table for ggplot
+d <- data.table(x, y)
+
+# plot the probability distribution
+ggplot(d, aes(x, y)) +
+  geom_line() +
+  xlab('X=x') +
+  ylab('P(X=x)') +
+  theme(aspect.ratio = 1)
+```
+
+There are again several important and subtle aspects of this
+probability distribution that we will wait until later to
+address. For now, lets focus on the big picture. We see that
+very short (close to zero) and very long reaction times are
+both very unlikely. We also see that the spread of possible
+reaction times is bunched up between zero and the peak of
+the disribution and that it is stretched out from the peak
+to the extreme long reaction times. If this was the true
+distribution for $X$, and we performed our experiment many
+times, we might obtain the following:
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+# Define the sample space
+x <- seq(0, 2, 0.01)
+
+# Define the probability distribution as an F-distribution
+y <- df(x, 5, 2)
+
+# draw 1000 samples from the distribution
+n <- 1000
+samples <- sample(x, n, replace=TRUE, prob=y)
+
+# plot a histogram of the samples
+ggplot(data.table(samples), aes(samples)) +
+  geom_histogram(binwidth=0.05) +
+  xlab('X=x') +
+  ylab('Frequency') +
+  theme(aspect.ratio = 1)
+```
+
+We can again see that the most common outcome is near the
+peak of the probability distribution and that the relative
+frequency of each outcome is about proportional to the
+height of the probability distribution at the corresponding
+outcome.
+
+## Summary
+Random variables are data generating processes defined by a
+probability distribution. The probability distribution
+specifies how likely each possible outcome is to occur. When
+we sample from a random variable -- e.g.,  by performing an
+experiment -- we obtain a set of outcomes. The relative
+frequency of each outcome will generally be about
+proportional to the height of the probability distribution
+at the corresponding outcome.
