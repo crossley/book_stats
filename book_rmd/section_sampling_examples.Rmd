@@ -22,7 +22,7 @@ rm(list=ls())
 x <- c(0, 1, 2, 3, 4, 5)
 
 # Define the probability distribution
-y <- c(0.1, 0.25, 0.3, 0.25, 0.1)
+y <- c(0.1, 0.15, 0.25, 0.25, 0.15, 0.1)
 
 # build a data.table for ggplot
 d <- data.table(x, y)
@@ -45,7 +45,6 @@ corresponding outcome is to occur. If this was the true
 probability distribution for $X$, and we performed out
 experiment a few times, we might get:
 
-
 ```{r, echo=F}
 library(data.table)
 library(ggplot2)
@@ -56,7 +55,8 @@ rm(list=ls())
 x <- c(0, 1, 2, 3, 4, 5)
 
 # Define the probability distribution
-y <- c(0.1, 0.25, 0.3, 0.25, 0.1)
+y <- c(0.1, 0.15, 0.25, 0.25, 0.15, 0.1)
+
 
 # draw 1000 samples from the distribution
 n <- 1000
@@ -73,24 +73,24 @@ look at the results of many.  If we performed our experiment
 many times -- many more times than would be conventient to
 print the results in line (say $n=1000$) -- then we need a
 better way to visualize the results. With discrete random
-variables a good way to do this is to use a dotplot.
+variables a good way to do this is to use a simple bar plot.
 
 ```{r, echo=F}
-# plot a dotplot of the samples
+# plot a bar graph to count samples
 ggplot(data.table(samples), aes(samples)) +
-  geom_dotplot(binwidth=1) +
+  geom_bar() +
   xlab('X=x') +
-  ylab('Frequency') +
+  ylab('Count') +
   theme(aspect.ratio = 1)
 ```
 
-We can see that the most common outcome is 2, which is what
-we would expect given that the peak of the probability
-distribution occurs at this value, but we also get many
-other outcomes. In general, the count of occurrences of each
-outcomee is about proportional to the height of the bar in
-the probability distribution. This is the essence of the
-concept of a probability distribution.
+We can see that the most common outcomes are 2 and 3, which
+is what we would expect given that the peak of the
+probability distribution occurs at this value, but we also
+get many other outcomes. In general, the count of
+occurrences of each outcomee is about proportional to the
+height of the bar in the probability distribution. This is
+the essence of the concept of a probability distribution.
 
 ## Example: Sampling from a simple continuous random variable
 Consider a random variable $X$ defined as the reaction time
@@ -113,7 +113,7 @@ library(ggplot2)
 rm(list=ls())
 
 # Define the sample space
-x <- seq(0, 2, 0.01)
+x <- seq(0, 4, 0.01)
 
 # Define the probability distribution as an F-distribution
 y <- df(x, 5, 2)
@@ -147,7 +147,7 @@ library(ggplot2)
 rm(list=ls())
 
 # Define the sample space
-x <- seq(0, 2, 0.01)
+x <- seq(0, 4, 0.01)
 
 # Define the probability distribution as an F-distribution
 y <- df(x, 5, 2)

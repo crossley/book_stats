@@ -1,0 +1,115 @@
+# Understanding Probability in Statistics
+The foundation of statistics is built on the modeling of
+real-world phenomena through random variables, which in turn
+are characterized by sample spaces and probability
+distributions. Here we dive a bit deeper into the formal
+aspects of probability theory so that we may better use and
+interpret statistical models.
+
+## Fundamental Concepts
+* The **sample space** of an experiment is the set of all
+  possible outcomes of that experiment.
+
+* An **outcome** is a possible result of an experiment. 
+
+* An **event** is a set of outcomes of an experiment.
+
+* An **elementary event** is an event which contains only a
+  single outcome in the sample space.
+
+### Example: Coin Flip Experiment
+Consider flipping a coin twice, leading to these possible
+outcomes:
+
+| Outcome # | 1st Flip | 2nd Flip |
+|-----------|----------|----------|
+| 1         | H        | H        |
+| 2         | H        | T        |   
+| 3         | T        | H        |
+| 4         | T        | T        |
+
+* Here, the **sample space** is $\{(H,H), (H,T), (T,H),
+  (T,T)\}$.
+
+* Each individual row is a possible **outcome**.
+
+* An example **event** could be $\{(H,H), (T,T)\}$,
+  representing getting the same side in both flips. Notice
+  that it is composed of two individual outcomes.
+
+* An **elementary event**, such as $\{(H,H)\}$, specifies a
+  single outcome from the sample space.
+
+### Probability Defined
+**Probability** is simply the likelihood of an event
+occurring. if the sample space is **discrete**, and the
+likelihood of each outcome is equal, then the probability of
+an event is simply the proportion of outcomes contained by
+that event relative to all possible outcomes. A similar
+definition for probability holds if the space of possible
+outcomes is **continuous**, but there are a few interesting
+and not immediately intuitive little kinks that we will need
+to deal with. For instance, if the sample space is
+continuous, then the probability of any any single event is
+actually zero (more on this in a later lecture).
+
+## Probability Rules
+* Probabilities range between $0$ and $1$ ($0 \leq P(e) \leq
+  1$ for any event $e$).
+
+* The sum of probabilities for all outcomes in the sample
+  space equals $1$.
+
+* The probability of an event not happening is $P(\neg e) =
+  1 - P(e)$.
+
+* For mutually exclusive events (i.e., events that share no
+  outcomes), the probability of any event occurring is the
+  sum of their individual probabilities:
+
+$$
+P(E) = P(e_1 \cup e_2 \ldots \cup e_n) = P(e_1) + P(e_2) + \ldots + P(e_n)
+$$
+
+### Independence, Intersection, and Union
+* Events $e_1$ and $e_2$ are **independent** if the
+  occurrence of one does not affect the likelihood of the
+  other, defined as $P(e_1 \cap e_2) = P(e_1)P(e_2)$.
+
+* The notation $P(e_1 \cap e_2)$ denotes the probability of
+  $e_1$ **and** $e_2$ happening, highlighting the
+  **intersection** of events.
+
+* The notation $P(e_1 \cup e_2)$ denotes the probability of
+  either $e_1$ **or** $e_2$ happening, highlighting the
+  **union** of events.
+
+### Validating Probability Sets
+Let $A$, $B$, $C$ share no outcomes and be the
+possible events of an experiment with the following
+probabilities of occurrence:
+
+$$
+P(A) = 0.4 \\
+p(B) = 0.3 \\
+P(C) = 0.3 \\
+$$
+
+This is a valid set of probabilities because they obey:
+
+* $0 < P < 1$
+
+* $P(A) + P(B) + P(C) = 1$
+
+Now suppose that we are told:
+
+$$
+P(A \cup B) = 0.6 \\
+P(A \cup C) = 0.7 \\
+P(B \cup C) = 0.6 \\
+$$
+
+This does not obey the rules of probability because we are
+told that they do not share any outcomes and yet  all union
+probabilities are not equal to the sum of their parts (e.g.,
+$P(A \cup B) \neq P(A) + P(B)$).

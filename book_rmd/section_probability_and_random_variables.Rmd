@@ -1,149 +1,5 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
 # Probability and random variables
-
-## Learning objectives
-
-* Define **probability** and understand the principles of
-  how to compute it for both discrete and continuous data.
-
-* Define and understand the relationship between
-  **populations**, **samples**, **random variables**, and
-  **probability distributions**.
-
-* Understand the relationship between **sample statistics**
-  and **population parameters**.
-
-* Understand the definition of **Expected Value**.
-
-* Understand how to compute **population mean** and
-  **population variance**.
-
-* Understand the definition of an **estimate** of a
-  population parameter.
-
-* Understand the definition of a **point estimate** and
-  **interval estimate** of population parameter.
-
-* Understand how to use sample statistics to generate point
-  estimates and interval estimates for **population mean**
-  and **population variance** parameters.
-
-## Probability definitions
-
-* An **outcome** is a possible result of an experiment. 
-
-* The **sample space** of an experiment is the set of all
-  possible outcomes of that experiment.
-
-* An **event** is a set of outcomes of an experiment.
-
-* An **elementary event** is an event which contains only a
-  single outcome in the sample space.
-
-* Consider the example of flipping a coin twice:
-
-|           | 1st flip | 2nd flip |
-|:---------:|:--------:|:--------:|
-| outcome 1 | H        | H        |
-| outcome 2 | H        | T        |   
-| outcome 3 | T        | H        |
-| outcome 4 | T        | T        |
-
-* The outcomes of the experiment are the rows of the above
-  table.
-
-* The set of all rows is the sample space
-  $\{(H,H),(H,T),(T,H),(TT)\}$.
-
-* An example event is $\{(H,H), (T,T)\}$.
-
-* Any individual row in the above table corresponds to an
-  elementary event (e.g., $(H,H)$). It is distinct from the
-  outcome $(H,H)$ only in that it is wrapped in a set
-  $\{(H,H)\}$.
-
-* **Probability** is simply the likelihood of an event
-  occurring. If the sample space is **discrete**, and the
-  likelihood of each outcome is equal, then the probability
-  of an event is simply the proportion of outcomes contained
-  by that event relative all possible outcomes.
-
-* A similar definition for probability holds if the space of
-  possible outcomes is **continuous**, but there are a few
-  interesting and not immediately intuitive little kinks
-  that we will need to deal with. For instance, if the
-  sample space is continuous, then the probability of any
-  any single event is actually zero (more on this in a later
-  lecture).
-
-## Rules of probability
-
-* $0 \leq P(e) \leq 1$ for all events $e$.
-
-* The probability of all outcomes in a sample space must sum
-  to $1$.
-
-* The probability that an event $e$ does not occur is given
-  by $P(\neg e)=1-P(e)$.
-
-* For some set of events that share no outcomes,
-  $E=\{e_1,e_2,\ldots,e_n\}$, the probability of all events
-  in $E$ occurring in a single sample is the sum of the
-  probabilities for each occurring individually:
-
-$$
-P(E) = P(e_1 \cup e_2 \ldots \cup e_n) = P(e_1) + P(e_2) + \ldots + P(e_n)
-$$
-
-* Note that the notation $P(e_1 \cup e_2)$ indicates the
-  probability of the *union* of $e_1$ and $e_2$ and can be
-  read as the the probability of $e_1$ occurring or event
-  $e_2$ occurring.
-
-* Two events $e_1$ and $e_2$ are **independent** if knowing
-  that one occurs tells you nothing about whether the second
-  will occur. This is given by
-  $P(e_1{\cap}e_2)=P(e_1)P(e_2)$.
-
-* Note that the notation $P(e_1 \cap e_2)$ indicates the
-  probability of the *intersection* of $e_1$ and $e_2$ and
-  can be read as the the probability of $e_1$ occurring and
-  event $e_2$ occurring.
-
-For Example, let $A$, $B$, $C$ share no outcomes and be the
-possible events of an experiment with the following
-probabilities of occurrence:
-
-$$
-P(A) = 0.4 \\
-p(B) = 0.3 \\
-P(C) = 0.3 \\
-$$
-
-This is a valid set of probabilities because they obey:
-
-* $0 < P < 1$ 
-
-* $P(A) + P(B) + P(C) = 1$
-
-Now suppose that we are told:
-
-$$
-P(A \cup B) = 0.6 \\
-P(A \cup C) = 0.7 \\
-P(B \cup C) = 0.6 \\
-$$
-
-This does not obey the rules of probability because we are
-told that they do not share any outcomes and yet  all union
-probabilities are not equal to the sum of their parts (e.g.,
-$P(A \cup B) \neq P(A) + P(B)$).
-
 ## Random variables and distributions
-
 A **random variable** is a data generating process. You can
 think of it like an infinitely deep bucket full of
 experiment outcomes. Whenever you perform an experiment, you
@@ -269,6 +125,8 @@ variable $X$.
 ```{r, echo=F}
 library(data.table)
 library(ggplot2)
+
+rm(list=ls())
 
 x <- c(1, 2, 3)
 y <- c(0.1, 0.4, 0.5)
@@ -433,6 +291,8 @@ variable $X$.
 ```{r, echo=F}
 library(data.table)
 library(ggplot2)
+
+rm(list=ls())
 
 x <- seq(-3, 3, 0.1)
 y <- dnorm(x)

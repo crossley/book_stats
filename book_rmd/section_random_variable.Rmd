@@ -80,9 +80,9 @@ dictates what exactly we measure.
   A **sample space** is the set of all possible outcomes of
   an experiment. For instance, the sample space of a coin
   toss is ${Heads, Tails}$, the sample space for rolling a
-  six-sided die is ${1, 2, 3, 4, 5, 6}$, and the sample
-  space of both tossing a coin and rolling a die is ${H1,
-  H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6}$. But like
+  six-sided die is $\{1, 2, 3, 4, 5, 6\}$, and the sample
+  space of both tossing a coin and rolling a die is $\{H1,
+  H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6\}$. But like
   populations, sample spaces can be finite or infinite, and
   continuous or discrete.
 
