@@ -1,4 +1,4 @@
-# Understanding Probability in Statistics
+# Probability fundamentals
 The foundation of statistics is built on the modeling of
 real-world phenomena through random variables, which in turn
 are characterized by sample spaces and probability

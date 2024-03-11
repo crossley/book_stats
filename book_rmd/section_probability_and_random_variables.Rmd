@@ -1,292 +1,86 @@
-# Probability and random variables
-## Random variables and distributions
-A **random variable** is a data generating process. You can
-think of it like an infinitely deep bucket full of
-experiment outcomes. Whenever you perform an experiment, you
-reach into the bucket, and pull out one outcome at random.
-All possible experiment outcomes contained by the bucket
-define the **population** under study, and the set of
-probabilities corresponding to each possible outcome is the
-**probability distribution**. Probability distributions are
-in turn defined as functions of one or more **population
-parameters**. In particular, if $X$ is a random variable
-with probability distribution $D(\boldsymbol{\theta})$ where
-the $\boldsymbol{\theta}$'s are population parameters, then
-we say
+## Probability distributions
+If $X$ is a random variable, then the probability
+distribution of $X$ is a function that gives the probability
+that $X$ will yield on a particular value when it is
+sampled. It is very imoprtant to emphasise that a
+probability distribution specifies the probability of every
+possible outcome the random variable can take.
 
-$$X \sim D(\theta_1, \ldots, \theta_n)$$
+### Example: Discrete random variable
+Lets return to our coin flip experiment in which we flip a
+coin twice. The sample space for the experiment is given by
+the following table:
 
-In words, this reads *X is distributed as D with parameters*
-$\theta_1, \ldots, \theta_n$.
+| Outcome # | 1st Flip | 2nd Flip |
+|-----------|----------|----------|
+| 1         | H        | H        |
+| 2         | H        | T        |   
+| 3         | T        | H        |
+| 4         | T        | T        |
 
+Now, let $X$ be the random variable that counts the number
+of heads in the experiment. The probability distribution of
+$X$ is given by the following table:
 
-## Sample statistics estimate population parameters
+| $x$ | $P(X=x)$ |
+|-----|----------|
+| 0   | 0.25     |
+| 1   | 0.5      |
+| 2   | 0.25     |
 
-Any outcome you pull out of the bucket is a **sample** from
-the **random variable**.  In general, we use **sample
-statistics** to **estimate** population parameters. An
-estimate of a population parameter is our best guess for
-what a population parameters true value is. For example, we
-use the sample mean to estimate the population mean.
-Estimation of population parameters with sample statistics
-is a key step we will always need to take when performing
-**inferential statistics**.
-
-<div style="color:#990000"> **The relationship between
-sample statistics and population parameters is fundamental
-and absolutely critical to understand.** </div>
-
-### Population mean for discrete $X$
-* Let $X$ be a discrete random variable.
-
-* Let $\boldsymbol{x} = \{x_1, \ldots, x_n\}$ be a sample
-  from $X$.
-
-The central tendency of the sample $\boldsymbol{x}$ is given
-by the **sample mean** $\bar{\boldsymbol{x}}$:
-$$
-\begin{align}
-\bar{\boldsymbol{x}} &= \frac{1}{n} \sum_{i=1}^{n} x_{i}
-\end{align}
-$$
-
-The true central tendency of $X$ is given by the
-**population mean** which is denoted by $\mu$ and is defined
-by an operation called the **expected value** of $X$ denoted
-$\mathbb{E}\big[X\big]$:
-
-$$
-\begin{align}
-\mathbb{E}\big[\boldsymbol{X}\big] &= \mu \\
-     &= x_1 p(x_1) + x_2 p(x_2) + \ldots + x_n p(x_n) \\
-     &= \sum_{i}^{n} x_i p(x_i)\\
-\end{align}
-$$
-
-If we do not know the true value of the population mean
-$\mu$ then we can estimate it using the sample mean
-$\bar{\boldsymbol{x}}$.
-$$
-\begin{align}
-\hat{\mu} &= \bar{\boldsymbol{x}}
-\end{align}
-$$
-
-This is called a **point estimate** of $\mu$, because we are
-specifying a single number (i.e., a single point) that is
-our best guess for its true value. Later, we will learn
-about **interval estimates** of population parameters, which
-provide a range of best guess (e.g., we might try to say
-that we are $95\%$ percent sure that the true value of some
-population parameter is between some lower value and some
-upper value). We will see how to generate interval estimates
-in a later lecture. For now, it is sufficient to understand
-their conceptual relationship to point estimates.
-
-### Population variance for discrete $X$
-Similarly, a common measure of the spread of a sample is
-given by the **sample variance** $\boldsymbol{s}^2$:
-
-$$
-\begin{align} 
-\boldsymbol{s}^2 &= \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{\boldsymbol{x}})^2
-\end{align}
-$$
-
-The true variance of $X$ is given by the **population
-variance** which is denoted by $\sigma^2$ and is defined
-as follows:
-$$
-\begin{align} 
-\mathbb{Var}\big[\boldsymbol{X}\big] &= \sigma^2 \\
-       &= \mathbb{E}\big[(X - \mu)^2\big] \\
-       &= \sum(x^2 - 2x\mu + \mu^2) p(x) \\
-       &= \sum x^2 p(x) - \sum 2 x \mu p(x) + \sum \mu^2 p(x) \\
-       &= \sum x^2 p(x) - 2 \mu \sum x p(x) + \mu^2 \sum p(x) \\
-       &= \sum x^2 p(x) - 2 \mu^2 + \mu^2 \\
-       &= \left(\sum_i x_{i}^2 p(x_{i})\right) - \mu^2
-\end{align}
-$$
-
-If we do not know the true value of the population variance
-$\sigma^2$ then we can estimate it using the sample variance
-$\bar{\boldsymbol{s}^2}$.
-$$
-\begin{align}
-\hat{\sigma^2} &= \boldsymbol{s}^2 \\
-\end{align}
-$$
-
-### Discrete $X$ example
-As a concrete example, consider the following discrete
-probability distribution corresponding to the random
-variable $X$.
+Note that here we have assumed that coin is fair and that
+the P(H) = P(T) = 0.5. With this assumption we are able to
+compute the probability of each outcome in the sample space
+by adding the number of heads in each row of the sample
+space table and divding by the total number of rows. Also,
+note that $X$ cannot yield fewer than zero heads or more
+than two heads, so the probability distribution of $X$ is
+fully specified by the above table. Lets plot the
+probability distribution of $X$ and also draw a few samples
+from $X$.
 
 ```{r, echo=F}
 library(data.table)
 library(ggplot2)
+library(ggpubr)
 
 rm(list=ls())
 
-x <- c(1, 2, 3)
-y <- c(0.1, 0.4, 0.5)
-
+x <- c(0, 1, 2)
+y <- c(0.25, 0.5, 0.25)
 d <- data.table(x, y)
-d[, mu := sum(x*y)]
-
-ggplot(d, aes(x, y)) +
-  geom_segment(aes(xend=x, yend=0)) +
+g1 <- ggplot(d, aes(x, y)) +
+  geom_bar(stat='identity') +
   xlab('X=x') +
   ylab('P(X=x)') +
   theme(aspect.ratio = 1)
+
+n <- 1000
+x <- rbinom(n, 2, 0.5)
+d <- data.table(x)
+g2  <- ggplot(d, aes(x)) +
+  geom_bar(stat='count') +
+  xlab('X=x') +
+  ylab('Count') +
+  theme(aspect.ratio = 1)
+ggarrange(g1, g2, ncol=2)
 ```
 
-<div style="color:#990000"> **Note that this is a
-probability distribution. It defines how likely outcomes
-from a random variable is. It is not itself a sample from a
-random variable** </div>
+As in previous examples we see that the majority of the
+samples are clustered around the outcomes associated with
+the highest probability in the probability distribution.
 
-Since we are explicitly given the probability distribution
---- i.e., we are told exactly what the probability of each
-event is --- so we can calculate the population mean $\mu$
-as follows:
-
-$$
-\begin{align}
-\mu &= \mathbb{E}\big[\boldsymbol{X}\big] \\
-    &= \sum_{i}^{n} x_i p(x_i) \\
-    &= (1 \times 0.1) + (2.0 \times 0.4) + (3.0 \times 0.5) \\
-    &= 2.4
-\end{align}
-$$
-
-<div style="color:#990000"> **Notice here that we have
-calculated the true value of a population parameter, yet we
-have not collected a single observation from an experiment.
-This is only possible because we were given the true
-probability distribution. When we are given exact
-probability distributions, then we can calculate population
-parameters exactly. When we are not given exact probability
-distributions, then we must estimate population parameters
-using sample statistics obtained by performing an experiment
-in which we sample from the random variable under
-consideration.** </div>
-
-Now suppose that we draw a the following sample of $n=10$
-from this distribution:
-
-```{r, echo=F}
-n <- 10
-rexdist <- function(n) {
-  xs <- vector('numeric', n)
-  for(i in 1:n) {
-    tmp <- runif(1)
-    if(tmp <= 0.1) {
-      xs[i] <- 1
-    }
-    else if(tmp > 0.1 & tmp <= 0.4) {
-      xs[i] <- 2
-    } else if(tmp > 0.4) {
-      xs[i] <- 3
-    }
-  }
-  return(xs)
-}
-xs <- rexdist(n)
-print("x:")
-print(xs)
-print("sample mean:")
-print(mean(xs))
-```
-
-The sample mean of this sample is $\bar{\boldsymbol{x}} =$
-`r mean(xs)`. Note that our sample mean is not equal to the
-population mean (it's just a fluke if it is). In fact, every
-time we run this experiment, we will likely get a different
-sample mean. Lets run it 5 more times and check each one.
-
-```{r, echo=F}
-n <- 10
-for(j in 1:5) {
-  rexdist(n)
-  xs <- rexdist(n) 
-  print("x:")
-  print(xs)
-  print("sample mean:")
-  print(mean(xs))
-}
-```
-
-<div style="color:#990000"> **This indicates that the sample
-mean is different every time we run the experiment, and
-therefore, the sample mean is a random variable itself! This
-idea is very important to how we go about performing
-statistical inference, and we will treat it more formally in
-later lectures. For now, make sure you see clearly why and
-how we know it is a random variable** </div>
-
-### Population mean and variance for continuous $X$
-* Let $X$ be a continuous random variable.
-
-* Let $\boldsymbol{x} = \{x_1, \ldots, x_n\}$ be a sample
-  from $X$.
-
-* Sample statistics are computed in exacrtly the same way
-  regardless of whether $X$ is continuous or discrete.
-
-* Population parameters are again computed in terms of the
-  **expected value** operator, but the way this operator
-  works is a bit different depending on whether $X$ is
-  continuous or discrete.
-
-* In particular, if $X$ is continuous, then we will replace
-  discrete sums (i.e., $\sum x$) with continuous integrals
-  (i.e., $\int x dx$).
-
-<!-- :::: {style="display: flex;"} -->
-:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px"}
-
-::: {}
-#### Continuous $X$ mean
-$$
-\begin{align}
-\bar{\boldsymbol{x}} &= \frac{1}{n} \sum_{i=1}^{n} x_{i} 
-\\
-\mathbb{E}\big[\boldsymbol{X}\big] &= \mu \\
-     &= \int x f(x) dx \\
-\\
-\hat{\mu} &= \bar{\boldsymbol{x}}
-\end{align}
-$$
-:::
-
-::: {}
-#### Continuous $X$ variance
-$$
-\begin{align} 
-\boldsymbol{s}^2 &= \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{\boldsymbol{x}})^2 
-\\
-\mathbb{Var}\big[\boldsymbol{X}\big] &= \sigma^2 \\
-       &= \mathbb{E}\big[(X - \mu)^2\big] \\
-       &= \int(x^2 - 2x\mu + \mu^2) f(x) dx \\
-       &= \int x^2 f(x) dx - \int 2 x \mu f(x) dx + \int \mu^2 f(x) dx \\
-       &= \int x^2 f(x) dx - 2 \mu \int x f(x) dx + \mu^2 \int f(x) dx \\
-       &= \int x^2 f(x) dx - 2 \mu^2 + \mu^2 \\
-       &= \left(\int x^2 fx \right) - \mu^2
-\\       
-\hat{\sigma^2} &= \boldsymbol{s}^2 
-\\
-\end{align}
-$$
-:::
-
-::::
-
-
-### Continuous $X$ example
-As a concrete example, consider the following continuous
-probability distribution corresponding to the random
-variable $X$.
+### Example: Continuous random variable
+Lets return to our reaction time experiment in which we have
+a random variable $X$ that measures the time it takes for a
+person to react to a stimulus. The sample space of this
+experiment is the set of all real numbers greater than zero
+which is both continuous and infinite. This means that we
+cannot specify the probability of every possible outcome
+using a table as we did for the discrete random variable.
+We can howeber visualise it using a plot. Lets assume that
+the probability distribution of $X$ is given by the
+following plot:
 
 ```{r, echo=F}
 library(data.table)
@@ -294,70 +88,46 @@ library(ggplot2)
 
 rm(list=ls())
 
-x <- seq(-3, 3, 0.1)
-y <- dnorm(x)
+# define sample space as a continuous random variable
+x <- seq(0, 10, 0.1)
 
+# define probability distribution as F distribution
+y <- df(x, 5, 2)
+
+# create a data table
 d <- data.table(x, y)
-d[, mu := 0]
 
-ggplot(d, aes(x, y)) +
+# plot the probability distribution
+g1 <- ggplot(d, aes(x, y)) +
   geom_line() +
   xlab('X=x') +
-  ylab('f(X=x)') +
+  ylab('P(X=x)') +
   theme(aspect.ratio = 1)
+
+# draw a few samples from X
+n <- 1000
+xs <- rf(1000, 5, 2)
+
+# plot the samples
+d <- data.table(xs)
+
+g2 <- ggplot(d, aes(xs)) +
+  geom_histogram(binwidth=0.1) +
+  xlab('X=x') +
+  ylab('Probability density f(x)') +
+  theme(aspect.ratio = 1)
+
+ggarrange(g1, g2, ncol=2)
 ```
 
-<div style="color:#990000"> **Notice that the y-axis is not
-labelled with $P(X=x)$. This is because when $X$ is
-continuous $P(X=x)=0$ for all $x$. The $f(x)$ label refers
-to probability density. We will discuss this more formally
-in a later lecture.** </div>
-
-As for our discrete $X$ example, we are explicitly given the
-probability distribution --- i.e., we are told exactly what
-the probability *density* of each event is --- so we can
-calculate the population mean $\mu$ as follows:
-
-$$
-\begin{align}
-\mu &= E(\boldsymbol{X}) \\
-    &= \int x p(x) dx \\
-    &= 0 \\
-\end{align}
-$$
-
-<div style="color:#990000"> **Note that you will not be
-expacted to evaluate difficulr integrals in this unit. You
-will, however, need to understand the trick I used to
-evaluate this integral. The trick is see that the
-distribution is symmetric, and so the expected value is the
-peak value.** </div>
-
-Now suppose that we draw a the following sample of $n=10$
-from this distribution:
-
-```{r, echo=F}
-n <- 10
-xs <- rnorm(n)
-print("x:")
-print(xs)
-print("sample mean:")
-print(mean(xs))
-```
-
-The sample mean of this sample is $\bar{\boldsymbol{x}} =$
-`r mean(xs)`. As for our discrete $X$ exmaple, we see that
-our sample mean is not equal to the population mean. Lets
-run it 5 more times to demonstrate again that the sample
-mean is indeed a ranomd variable.
-
-```{r, echo=F}
-n <- 10
-for(j in 1:5) {
-  xs <- rnorm(n) 
-  print("x:")
-  print(xs)
-  print("sample mean:")
-  print(mean(xs))
-}
-```
+We again see that the majority of the samples are clustered
+around the outcomes associated with the highest probability.
+However, note that there is an important twist here. Notice
+that the y-axis of the plot of the probability distribution
+is labelled *probability density f(x)* and not simply
+*P(X=x)*.  **This is because when $X$ is continuous
+$P(X=x)=0$ for all $x$.** The $f(x)$ label refers to
+probability density. This is a very cool and
+counterintuitive idea that has important implications for
+how we interact with probability distributions. We turnt to
+this next.

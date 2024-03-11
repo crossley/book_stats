@@ -6,25 +6,27 @@ rmd_files: [
   "section_intro_to_R.Rmd",
   "section_intro_to_data_table.Rmd",
   "section_intro_to_ggplot.Rmd",
+  "section_basic_descriptive_stats.Rmd",
   #######
   "section_random_variable.Rmd",
   "section_continuous_vs_discrete.Rmd",
   "section_finite_vs_infinite.Rmd",
   "section_sampling.Rmd",
   "section_sampling_examples.Rmd",
+  "section_samples_estimate_distributions.Rmd",
   #######
   # "section_between_vs_within.Rmd"
   #######
   "section_probability.Rmd",
-  "section_basic_descriptive_stats.Rmd",
   "section_probability_and_random_variables.Rmd",
-  "section_expected_value.Rmd",
-  #######
   "section_computing_probabilities_from_distributions.Rmd",
-  "section_using_R_to_compute_probabilities.Rmd",
+  "section_random_variable_moments.Rmd",
+  "section_statistics_estimate_parameters.Rmd",
+  #######
   "section_bernoulli.Rmd",
   "section_binomial.Rmd",
   "section_normal.Rmd",
+  "section_using_R_to_compute_probabilities.Rmd",
   #######
   "section_dist_samp_mean.Rmd",
   "section_central_limit_theorem.Rmd",
@@ -49,3 +51,36 @@ rmd_files: [
   #######
   "section_book_data_summary.Rmd",
 ]
+
+
+# <!--
+# TODO: I think it would be good to make another section
+# called "population parameters" to introduce the idea of
+# probability distributions being defined in terms of one or
+# more population parameters. Then we can introduce the idea
+# of point estimates and interval estimates of population
+# parameters. This will help to motivate the idea of using
+# sample statistics to estimate population parameters.
+# 
+# Probability distributions are in turn defined as functions
+# of one or more **population parameters**. 
+# 
+# In particular, if $X$ is a random variable with probability
+# distribution $D(\boldsymbol{\theta})$ where the
+# $\boldsymbol{\theta}$'s are population parameters, then we
+# say:
+# 
+# $$X \sim D(\theta_1, \ldots, \theta_n)$$ # 
+# In words, this reads *X is distributed as D with parameters*
+# $\theta_1, \ldots, \theta_n$.
+# 
+# Any outcome you pull out of the bucket is a **sample** from
+# the **random variable**. In general, we use **sample
+# statistics** to **estimate** population parameters. An
+# estimate of a population parameter is our best guess for
+# what a population parameters true value is. For example, we
+# use the sample mean to estimate the population mean.
+# Estimation of population parameters with sample statistics
+# is a key step we will always need to take when performing
+# **inferential statistics**.
+# -->

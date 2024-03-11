@@ -1,0 +1,132 @@
+## Using samples to estimate probability distributions
+A **random variable** is a data generating process. You can
+think of it like an infinitely deep bucket full of
+experiment outcomes. Whenever you perform an experiment, you
+reach into the bucket, and pull out one outcome at random.
+All possible experiment outcomes contained by the bucket
+define the **population** under study, and the set of
+probabilities corresponding to each possible outcome is the
+**probability distribution**. Any outcome you pull out of
+the bucket is a **sample** from the **random variable**. In
+general, we use **samples** to **estimate** full
+probabilitiy distributions or aspects of probability
+distributions (e.g., their central tendancy and dispersion).
+
+## Discrete distributions
+Consider an experiment where participants are shown a list
+of 10 words for a brief period and then asked to recall as
+many words as possible after a short delay. Lets define a
+random variable $X$ as the number of words correctly
+recalled. With this definition, $X$ can only take on integer
+values from 0 to 10. Suppose we have conducted the
+experiment with 100 participants and obtain the following
+sample.
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+set.seed(123) # For reproducibility
+n <- 100 # Number of participants
+size <- 10 # Number of words shown
+prob <- 0.5 # Assuming on average, participants recall half the words
+scores <- rbinom(n, size, prob)
+
+# Convert the scores into a data.table
+dt_scores <- data.table(score = scores)
+
+# bar plot of the scores
+ggplot(dt_scores, aes(x = score)) +
+  geom_bar(stat = "count", fill = "steelblue") +
+  labs(title = "Memory Recall Scores",
+       x = "Score",
+       y = "Count") +
+  theme_minimal()
+```
+
+The height of each bar represents the count of participants
+who recalled that many words. We have seen in previous
+sections that the count of samples at each possible outcome
+is about proportional to the height of the probability mass
+function at that outcome. This means that the bar graph
+we've just plotted can be thought of as an estimate of the
+probability mass function of the random variable $X$. The
+main problem with this estimate is that the sum of the
+height of all the bars does not equal 1. To fix this, we
+need only to normalize the height of each bar by the total
+number of samples (i.e., divide each bar height by the total
+number of samples). After normalisation we have the
+following:
+
+```{r, echo=F}
+dt_scores[, Probability := .N / n]
+ggplot(dt_scores, aes(x = score, y = Probability)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Estimated Probability Distribution of Memory Recall Scores",
+       x = "Score",
+       y = "Probability") +
+  theme_minimal()
+```
+
+By using proportion instead of count we now have a valid
+estimate of the probability mass function of the random
+variable $X$. This is a very simple example of how we can
+use samples to estimate probability distributions. In
+general, we can use the same approach to estimate any
+discrete probability distribution.
+
+### Continuous distributions
+Consider an experiment where the reaction time of
+participants is measured in seconds as they perform a task
+requiring quick responses to visual stimuli. Define a random
+variable $X$ as the reaction time. Here, $X$ can take any
+real value between zero and infinity. Suppose we conducted
+the experiment with 100 participants and obtained the
+following sample of reaction times.
+
+```{r, echo=F}
+library(data.table)
+library(ggplot2)
+
+rm(list=ls())
+
+set.seed(123) # For reproducibility
+n <- 100 # Number of participants
+mean_time <- 1.5 # Average reaction time in seconds
+sd_time <- 0.5 # Standard deviation of reaction times
+
+# Simulate reaction times from a normal distribution
+reaction_times <- rnorm(n, mean_time, sd_time)
+
+# Convert the reaction times into a data.table
+dt_reaction_times <- data.table(reaction_time = reaction_times)
+```
+
+To estimate the probability distribution of $X$ -- the
+random variable that generated these reaction times -- we
+use a histogram. We will also overlay a density plot to
+provide a smoother estimate of the distribution.
+
+```{r, echo=F}
+# Histogram and density plot of reaction times
+ggplot(dt_reaction_times, aes(x = reaction_time)) +
+  geom_histogram(aes(y = ..density..), binwidth = 0.1, fill = "steelblue", alpha = 0.7) +
+  geom_density(alpha = .2, fill = "#FF6666") +
+  labs(title = "Distribution of Reaction Times",
+       x = "Reaction Time (seconds)",
+       y = "Density") +
+  theme_minimal()
+```
+
+The histoogram makes intuitive sense to use in this context
+-- becuase at least given good choices for bin width and
+large enough sample size it ends up looking like the
+distributions we sample from -- but it is actually a
+stranger fit that if first appears. This is because a
+histogram uses **discrete** bins to estimate a
+**continuous** probability distribution. This should bring
+you back to your introduction to calculus. In calculus, you
+learned that you can estimate the area under a curve by
+dividing the area into small rectangles and then summing the
+area of the rectangles. The samller the rectangles the
+better the estimate. A very similar mechanism is at play
+with a histogram.

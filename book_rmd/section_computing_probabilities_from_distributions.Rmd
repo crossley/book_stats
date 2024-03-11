@@ -1,80 +1,54 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
-# Computing probabilities from probability distributions
-
-## Learning objectives
-
-TODO: fix learning objectives
-
-* Understand how, in principle, to **compute expected
-  values** from continuous and discrete random variables.
-
-* Define and understand **probability distributions**
-  including **probability mass functions**, and
-  **probability density functions**, **cumulative
-  probability functions** and **quantile functions**.
-
-* Be able to read simple expected values and probabilities
-  from probability mass and density functions, and
-  cumulative distribution functions.
-
-* Use `R` functions to obtain useful things about binomial
-  and normal distributions.
-
-  * `dbinom`
-  
-  * `pbinom`
-  
-  * `qbinom`
-  
-  * `rbinom`
-  
-  * `dnorm`
-  
-  * `pnorm`
-  
-  * `qnorm`
-  
-  * `rnorm`
-
-## Computing Probabilities
-
-With discrete probability distribution, we were able to
+## Computing probabilities from probability distributions
+With discrete probability distributions, we were able to
 compute the probability of certain events by counting the
 total number of ways for an outcome to occur and dividing by
-the total number of possible outcomes. However, for
-*continuous* probability distributions, this methods doesn't
-work. To see this, consider a Normal distribution. We first
-need to count the number of ways for an outcome to occur.
-Suppose we are interested in $p(x<1)$. How many ways are
+the total number of possible outcomes.  However, for
+*continuous* probability distributions, this method doesn't
+work. To see this, consider the continuous distribution
+associated with the simple reaction time experiment in the
+previous section.
+
+Suppose we are interested in $p(X=1)$.  We first need to
+count the number of ways for an outcome to occur. For
+$p(X=1)$ -- a single outcome --  there is just one way. Next
+-- assuming equal probability of all outcomes (not a good
+assumption in this case but this is the least of our
+troubles at the moment) -- we need to divde by the total
+number of possible outcomes.  However, since $X$ is
+continuous, there are an infinite number of possible
+outcomes. So we are left dividing one by infinity. Any real
+number divided by infinity is zero. So here lies our
+problem. The probability of any single outcome in a
+continuous distribution is zero.
+
+Perhaps the situation improves if instead of asking about
+the probbaility of single outcomes, we ask about the
+probability of ranges of outcomes. For example, what is the
+probability that $X$ is less than $1$? How many ways are
 there for $x$ to be less than $1$? Since $x$ is continuous,
 there are *infinite* ways for this occur! What about the
 total number of possible outcomes? Right. Infinity again. So
 we are left dividing one infinity by another infinity. Quite
 a confusing and ill-defined situation.
 
-<div class = "row">
-<div class = "col-md-6">
-
 ### Discrete distributions
-
 With discrete probability distributions -- also called
 probability mass functions (pmfs) -- finite and well-defined
-probabilities exist for every single possible outcome. This
-means that you can plot the distribution, and read
-probabilities right off the y-axis of the plot.
-
-#### Binomial pmf
+probabilities exist for every single possible outcome.
+**This means that you can plot the distribution, and read
+probabilities right off the y-axis of the plot.**
 
 ```{r, echo=F}
+library(data.table)
+library(ggplot2)
+library(ggpubr)
+
+rm(list=ls())
 
 x <- seq(0, 15, 1)
 fx <- dbinom(x, 15, 0.5)
 d <- data.table(x=x, fx=fx)
-
-ggplot(d, aes(x, fx)) +
+g1 <- ggplot(d, aes(x, fx)) +
     geom_point() +
     ylab('Probability') +
     theme(
@@ -82,53 +56,11 @@ ggplot(d, aes(x, fx)) +
         axis.title=element_text(size=24)
     )
 
-```
-
-</div>
-<div class = "col-md-6">
-
-### Continuous distributions
-
-With continuous probability distributions -- aslo called
-probability density functions (pdfs) -- the probability of
-any single outcome is zero. The distribution represents
-*probability density* rather than probability. In this case,
-probability is computed by taking the area under the curve.
-
-#### Normal pdf
-
-```{r, echo=F}
-
-x <- seq(-5, 5, 0.01)
-fx <- dnorm(x, 0, 1)
-d <- data.table(x=x, fx=fx)
-
-ggplot(d, aes(x, fx)) +
-    geom_line() +
-    ylab('Probability Density') +
-    theme(
-        axis.text=element_text(size=18),
-        axis.title=element_text(size=24)
-    )
-
-```
-
-</div>
-</div>
-
-<div class = "row">
-<div class = "col-md-6">
-
-#### Binomial example: P(X < 8)
-
-```{r, echo=F}
-
 x <- seq(0, 15, 1)
 fx <- dbinom(x, 15, 0.5)
 d <- data.table(x=x, fx=fx)
 d[, px := x < 8]
-
-ggplot(d, aes(x,
+g2 <- ggplot(d, aes(x,
               fx,
               colour=factor(px),
               fill=factor(px))) +
@@ -139,29 +71,49 @@ ggplot(d, aes(x,
                      yend=fx,
                      y=0)) +
     ylab('Probability') +
+    # $$p(X<8) = \sum_{i=0}^7 p(x_{i})$$
+    ggtitle('Probability of X < 8') +
     theme(
         axis.text=element_text(size=18),
         axis.title=element_text(size=24),
         legend.position='none'
     )
-
+ggarrange(g1, g2, ncol=2)
 ```
 
-$$ p(X<8) = \sum_{i=0}^7 p(x_{i}) $$
-
-</div>
-<div class = "col-md-6">
-
-#### Normal example: P(X < 1)
+### Continuous distributions
+With continuous probability distributions -- aslo called
+probability density functions (pdfs) -- the probability of
+any single outcome is zero. The distribution represents
+*probability density* rather than probability. **In this
+case, probability is computed by taking the area under the
+curve.**
 
 ```{r, echo=F}
+library(data.table)
+library(ggplot2)
+library(ggpubr)
+
+rm(list=ls())
+
+x <- seq(-5, 5, 0.01)
+fx <- dnorm(x, 0, 1)
+d <- data.table(x=x, fx=fx)
+
+g1 <- ggplot(d, aes(x, fx)) +
+    geom_line() +
+    ylab('Probability Density') +
+    theme(
+        axis.text=element_text(size=18),
+        axis.title=element_text(size=24)
+    )
 
 x <- seq(-5, 5, 0.01)
 fx <- dnorm(x, 0, 1)
 d <- data.table(x=x, fx=fx)
 d[, px := x < 1]
 
-ggplot(d, aes(x,
+g2 <- ggplot(d, aes(x,
               fx,
               colour=factor(px),
               fill=factor(px))) +
@@ -172,15 +124,12 @@ ggplot(d, aes(x,
                     ymax=fx),
                 alpha=0.3) +
     ylab('Probability Density') +
+    # $$ p(X<1) = \int_{-\inf}^{1} f(x) dx $$
+    ggtitle('Probability of X < 1') +
     theme(
         axis.text=element_text(size=18),
         axis.title=element_text(size=24),
         legend.position='none'
     )
-
+ggarrange(g1, g2, ncol=2)
 ```
-
-$$ p(X<1) = \int_{-\inf}^{1} f(x) dx $$
-
-</div>
-</div>

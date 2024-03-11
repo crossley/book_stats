@@ -1,22 +1,6 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
 # Basic descriptive statistics
-
-## Learning objectives
-
-- Understand conceptually and be able to compute by hand and
-using `R` the following descriptive statistics:
-  - **sample mean**
-  - **sample median**
-  - **sample mode**
-  - **sample variance**
-  - **sample standard deviation**
-  - **sample range**
   
 ## Central tendency of a sample
-
 Given a sample, a measure of central tendency is supposed to
 tell us where most values tend to be clustered. One very
 common measure of sample central tendency is called the
@@ -42,7 +26,6 @@ the value that splits the observations in half. Finally,
 sample.
 
 ### Central tendency by hand
-
 Suppose you have the following observations:
 $$
 \boldsymbol{x} = (55, 35, 23, 44, 31)
@@ -84,7 +67,6 @@ $$
 
 
 ### Central tendency using R
-
 In general, things are easier and we are happier and more
 productive human beings if we use R. We just store our
 sample observations in a variable `x`, and use built-in `R`
@@ -105,7 +87,6 @@ median(x)
 
 
 ### Central tendency and outliers
-
 Sometimes a sample contains a few observations that are very
 different from the majority of the others. Theses
 observations are called **outliers**. How will outliers
@@ -145,7 +126,6 @@ identify and investigate outliers in our data.**
 
 
 ## Spread of a sample
-
 Measures of spread of a sample are supposed to tell us how
 widely the sample observations are distributed. One very
 common measure of spread is called **sample variance**. It
@@ -170,7 +150,6 @@ between the most extreme observed values.
 
 
 ### Spread by hand
-
 Consider the following sample:
 
 $$
@@ -203,7 +182,6 @@ Well, that sucked, and in the next section we will see that
 
 
 ### Spread by `R`
-
 We now use `R` to quickly compute the all measures of spread
 just covered.
 

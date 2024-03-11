@@ -42,7 +42,7 @@ We will also see how to deal with different data formatting,
 using `melt` and `dcast` functions for reshaping data tables
 from wide format to long or vice versa.
 
-## Loading the `data.table` library and creating a `data.table`
+## Creating a `data.table`
 ```{r}
 # Load the data.table library 
 library(data.table)
@@ -57,7 +57,7 @@ dt <- data.table(x, y, z)
 dt
 ```
 
-### Subset rows in `i`
+## Subset rows in `i`
 
 * There are many ways to select rows.
 
@@ -113,7 +113,7 @@ dt[1:.N] # select every row using the .N keyword
 dt[2:.N] # select all but the first row using the .N keyword
 ```
 
-### Select columns with `j`
+## Select columns with `j`
 * To operate on specific columns, set `j` equal to a list of
   the names of the columns you want.
 
@@ -122,7 +122,7 @@ dt[2:.N] # select all but the first row using the .N keyword
   first. Once you get used to it, you will appreciate the
   brevity.
 
-### Select and operate on columns with `j`
+## Select and operate on columns with `j`
 * You can do a lot more than just return the columns
   specified in `j`. In fact, you can perform any operation
   you want on them.
@@ -166,9 +166,7 @@ dt[, .(mean(z), sd(z))] # default column names
 dt[, list(z_mean=mean(z), z_sd=sd(z))] # custom column names
 ```
 
-
-### Combine `i` and `j`
-
+## Combine `i` and `j`
 * It is straightforward to combine `i` and `j`.
 
 ```{r}
@@ -176,9 +174,7 @@ dt[, list(z_mean=mean(z), z_sd=sd(z))] # custom column names
 dt[x=='II', .(y, z)]
 ```
 
-
-### Group using `by`
-
+## Group using `by`
 * The real magic of `data.table` comes in the power of the
   `by` argument.
 
@@ -213,8 +209,7 @@ dt[, .(mean(z), sd(z)), .(x)] # default naming of resulting columns
 dt[, .(z_mean=mean(z), z_sd=sd(z)), .(x)] # custom naming of resulting columns
 ```
 
-### Adding and modifying columns
-
+## Adding and modifying columns
 * Use the `:=` operator inside the `j` argument of a
   `data.table` to add or modify a column.
 
@@ -247,8 +242,7 @@ new_col_betsy <- rep(c('mouse', 'rat'), 6)
 dt[, betsy := new_col_betsy] # add betsy
 ```
 
-### Be careful when copying `data.table` objects
-
+## Be careful when copying `data.table` objects
 * `dt2 = dt` creates a *shallow copy*. This means that there
   is really only one `data.table` object in memory, but it
   can be referred to by both names.
@@ -281,7 +275,7 @@ dt_copy[, x := NULL]
 dt
 ```
 
-### Getting data into a `data.table`
+## Getting data into a `data.table`
 * The first and primary method that will use to get data
   into a `data.table` is the `fread` function, which is part
   of the `data.table` library.
@@ -298,7 +292,6 @@ f <- 'https://crossley.github.io/book_stats/data/maze/maze.csv'
 d <-fread(f)
 d
 ```
-
 
 * A second method that we will sometimes use to get data into
   a `data.table` is as follows:
@@ -320,7 +313,7 @@ DT
   and paste it over into your `R` session to turn it into a
   `data.table`.
   
-### Wide vs long format
+## Wide vs long format
 * The following `data.table` is in **long** format:
 
 ```{r, echo=F}
@@ -335,8 +328,9 @@ d <- fread('https://crossley.github.io/book_stats/data/maze/d_wide.csv')
 d
 ```
 
-* Each format has its pros and cons, and you may find yourself
-  needing to switch between them even within the same dataset.
+* Each format has its pros and cons, and you may find
+  yourself needing to switch between them even within the
+  same dataset.
   
 * To go from wide to long format you should use the `melt`
   function from the `data.table` library.
@@ -344,11 +338,11 @@ d
 * To go from long to wide format you should use the `dcast`
   function from the `data.table` library.
   
-* Using these functions is just a bit beyond the scope of this
-  lecture, but we will return later in the unit to learn about
-  them. If you are feeling confident in your use of
-  `data.table` then you may enjoy getting a little ahead of
-  the game by reading the following vignette:
+* Using these functions is just a bit beyond the scope of
+  this lecture, but we will return later in the unit to
+  learn about them. If you are feeling confident in your use
+  of `data.table` then you may enjoy getting a little ahead
+  of the game by reading the following vignette:
 
   [reshaping `data.table`
   vignette](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html)

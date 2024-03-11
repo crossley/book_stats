@@ -10,8 +10,6 @@ example, we will see how to make  scatter plots, bar plots,
 box plots, histograms, and violin plots, all of which are
 common and useful when analyzing and presenting data.
 
-## Data visualisation using `ggplot`
-
 Data visualisation is a core component of modern descriptive
 statistics and it is essential that we become proficient at
 collecting data, assembling it into csv-style formats,
@@ -36,7 +34,7 @@ d_wide <- data.table(x1, x2, x3)
 d_long <- melt(d_wide, measure.vars=c('x1', 'x2', 'x3'))
 ```
 
-### `geom_histogram`
+## `geom_histogram`
 ```{r include=T, echo=F}
 library(ggplot2)
 library(data.table)
@@ -59,7 +57,7 @@ ggplot(data=d, aes(x=x)) +
                    yend = 10), colour='green')
 ```
 
-### `geom_point`
+## `geom_point`
 Perhaps the most straightforward approach to visualising
 data is simply to plot points for each observation in your
 sample. 
@@ -70,7 +68,7 @@ ggplot(data=d_long, aes(x=variable, y=value)) +
 ```
 
 
-### `geom_boxplot`
+## `geom_boxplot`
 Box plots give a summary of how your data is distributed by
 visually marking out the median value as well as the 25th to
 the 75th percentile. The idea is to concisely illustrate
@@ -93,7 +91,7 @@ ggplot(data=d_long, aes(x=variable, y=value)) +
 ```
 
 
-### `geom_violin`
+## `geom_violin`
 Violin plots are similar to box plots, except rather than
 represent your data in terms of percentiles, it attempts to
 give you a continuous estimate of how much our your data
@@ -106,8 +104,7 @@ ggplot(data=d_long, aes(x=variable, y=value)) +
   geom_point()
 ```
 
-
-### `geom_hist`
+## `geom_hist`
 A histogram attempts to illustrate how data is distributed
 by grouping data points into a set number of bins, and
 plotting a bar with height equal to the number of points in
@@ -128,7 +125,7 @@ ggplot(data=d_long, aes(x=value, fill=variable)) +
   facet_wrap(~variable)
 ```
 
-### `geom_bar`
+## `geom_bar`
 Bar plots are among the most common plots you will encounter
 as you navigate pretty much any scientific field. They throw
 away all information about how your data is distributed, and
@@ -146,8 +143,7 @@ ggplot(data=d_mean, aes(x=variable, y=var_mean)) +
   geom_bar(stat='identity')
 ```
 
-
-### `geom_line`
+## `geom_line`
 Of course, in certain circumstance, we might want to make a
 simple line plot. This is also easy to achieve with
 `ggplot`, but to demonstrate its use, we will need a

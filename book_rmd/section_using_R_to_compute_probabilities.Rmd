@@ -1,7 +1,3 @@
-```{r echo=F, message=F, warning=F}
-rm(list=ls())
-```
-
 # Using R to compute probabilities
 
 For most probability distributions, R has 4 built-in
@@ -12,22 +8,16 @@ For the Binomial distribution, these functions are the
 following:
 
 * `dbinom(x)`: Probability mass function
-
 * `pbinom(x)`: Cumulative distribution function
-
 * `qbinom(p)`: quantile function
-
 * `rbinom(n)`: function for random samples
 
 For the Normal distributions, these functions are the
 following:
 
 * `dnorm(x)`: Probability density function
-
 * `pnorm(x)`: Cumulative distribution function
-
 * `qnorm(p)`: quantile function
-
 * `rnorm(n)`: function for random samples
 
 You can see the naming convention adopted by R right away.
@@ -51,7 +41,7 @@ You can see the naming convention adopted by R right away.
 
   * By default these functions return $P(X \leq x)$. If you
   specify `lower.tail=FALSE` then these functions return
-  $P(X>x)$. Be careful when using these functions to
+  $P(X\>x)$. Be careful when using these functions to
   appreciate that for continuous distributions
   $P(X \leq x)=1-P(X \geq x)$ but for discrete distributions
   $P(X \leq x)=1-P(X \geq x+1)$. All that is basically just
@@ -61,17 +51,19 @@ You can see the naming convention adopted by R right away.
 * The `q` functions are quantile functions. 
 
   * They are the inverse of the cumulative probability
-  functions. Here, you specify a cumulative probability $q$,
-  and the function returns the value of $x$ such that
-  $P(X<x)=q$.
+    functions. Here, you specify a cumulative probability
+    $q$, and the function returns the value of $x$ such that
+    $P(X\<x)=q$.
 
 * The `r` functions generate random samples.
 
-
-</div>
-<div class = "col-md-6">
 **pmf**: probabilities are given by values on the y-axis.
+
 ```{r, echo=F}
+library(data.table)
+library(ggplot2)
+rm(list=ls())
+
 n <- 15
 p <- 0.5
 x <- seq(0, n, 1)
@@ -83,8 +75,9 @@ ggplot(pdf, aes(x, fx)) +
   theme(text = element_text(size=20))
 ```
 
-**cdf**: cumulative probabilities (X<x) are given by reading
-values on the y-axis.
+**cdf**: cumulative probabilities $(X\<x)$ are given by
+reading values on the y-axis.
+
 ```{r, echo=F}
 cdf <- data.table(id='cdf', x=x, fx=pbinom(x, n, p))
 ggplot(cdf, aes(x, fx)) + 
@@ -97,6 +90,7 @@ ggplot(cdf, aes(x, fx)) +
 **qf**: use this function to specify a probability (x-axis)
 and get the value that satisfies this probability from the
 y-axis.
+
 ```{r, echo=F}
 p <- seq(0.01, 0.99, 0.001)
 qf <- data.table(id='qf', x=p, fx=qbinom(p, n, p))
@@ -106,11 +100,10 @@ ggplot(qf, aes(x, fx)) +
   ylab('x') +
   theme(text = element_text(size=20))
 ```
-</div>
 
-<div class = "col-md-6">
 **pdf**: probabilities are given by the area under the
 curve.
+
 ```{r, echo=F}
 x <- seq(-5, 5, 0.01)
 pdf <- data.table(id='pdf', x=x, fx=dnorm(x))
@@ -121,8 +114,9 @@ ggplot(pdf, aes(x, fx)) +
   theme(text = element_text(size=20))
 ```
 
-**cdf**: cumulative probabilities (X<x) are given by reading
-values on the y-axis.
+**cdf**: cumulative probabilities $(X\<x)$ are given by
+reading values on the y-axis.
+
 ```{r, echo=F}
 cdf <- data.table(id='cdf', x=x, fx=pnorm(x))
 ggplot(cdf, aes(x, fx)) + 
@@ -135,6 +129,7 @@ ggplot(cdf, aes(x, fx)) +
 **qf**: use this function to specify a probability (x-axis)
 and get the value that satisfies this probability from the
 y-axis.
+
 ```{r, echo=F}
 p <- seq(0.01, 0.99, 0.001)
 qf <- data.table(id='qf', x=p, fx=qnorm(p))
@@ -144,23 +139,14 @@ ggplot(qf, aes(x, fx)) +
   ylab('x') +
   theme(text = element_text(size=20))
 ```
-</div>
-</div>
 
-<div style="color:#990000">
 **In general, I think it is important for you to be able to
 read each of the types of plots above, so please really try
 to encode these and think about them deeply.**
-<br></br>
-</div>
 
-<div class = "row">
-<div class = "col-md-6">
-
-#### Binomial example: P(X < 8)
+#### Binomial example: $P(X \< 8)$
 
 ```{r, echo=F}
-
 x <- seq(0, 15, 1)
 fx <- dbinom(x, 15, 0.5)
 d <- data.table(x=x, fx=fx)
@@ -197,14 +183,10 @@ px
 px <- pbinom(7, n, p)
 px
 ```
-</div>
 
-<div class = "col-md-6">
-
-#### Normal example: P(X < 1)
+#### Normal example: $P(X \< 1)$
 
 ```{r, echo=F}
-
 x <- seq(-5, 5, 0.01)
 fx <- dnorm(x, 0, 1)
 d <- data.table(x=x, fx=fx)
@@ -226,7 +208,6 @@ ggplot(d, aes(x,
         axis.title=element_text(size=24),
         legend.position='none'
     )
-
 ```
 
 ```{r}
@@ -242,18 +223,9 @@ px <- pnorm(1, mu, sig)
 px
 ```
 
-</div>
-</div>
-
-
-
-<div class = "row">
-<div class = "col-md-6">
-
-#### Binomial example: P(X > 9)
+#### Binomial example: $P(X \> 9)$
 
 ```{r, echo=F}
-
 x <- seq(0, 15, 1)
 fx <- dbinom(x, 15, 0.5)
 d <- data.table(x=x, fx=fx)
@@ -275,7 +247,6 @@ ggplot(d, aes(x,
         axis.title=element_text(size=24),
         legend.position='none'
     )
-
 ```
 
 ```{r}
@@ -290,14 +261,10 @@ px
 px <- pbinom(9, n, p, lower.tail=F)
 px
 ```
-</div>
 
-<div class = "col-md-6">
-
-#### Normal example: P(X > 1.8)
+#### Normal example: $P(X \> 1.8)$
 
 ```{r, echo=F}
-
 x <- seq(-5, 5, 0.01)
 fx <- dnorm(x, 0, 1)
 d <- data.table(x=x, fx=fx)
@@ -319,7 +286,6 @@ ggplot(d, aes(x,
         axis.title=element_text(size=24),
         legend.position='none'
     )
-
 ```
 
 

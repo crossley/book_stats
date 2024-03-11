@@ -1,0 +1,86 @@
+# Moments of a random variable
+Sometimes specififying the entire probability distribution
+is cumbersome or unnecessary. In these cases, we sometimes
+seek to characterize the shape of the distribution using the
+**moments of the random variable**. The moments of a random
+variable are simple scalar values that are computed from
+knowledge of the probability distribution. Moments provide
+insiight into a probability distribition's central tendency,
+dispersion, skewness, kurtosis, etc.
+
+## The expected value of a random variable
+It's cool to know that moments are a thing but a full
+treatment of moments is beyond the scope of this book. It
+will be sufficient to know that the first moment of a random
+variable is the **expected value** of the random variable
+and the second moment is the **variance** of the random
+variable.
+
+The **expected value** of a random variable is a measure of
+the central tendency of the random variable. It is also
+called the **population mean**. The expected value of a
+random variable is a statement of where most of your data is
+likely to fall if you sample the random variable many times.
+It is defined as the weighted average of the possible
+outcomes of the random variable, where the weights are given
+by the probability of each outcome.
+
+For a discrete random variable, the expected value is given
+by the following equation:
+
+\begin{align}
+\mathbb{E}\big[X\big] &= \mu \\
+     &= x_1 p(x_1) + x_2 p(x_2) + \ldots + x_n p(x_n) \\
+     &= \sum_{i}^{n} x_i p(x_i)
+\end{align}
+
+When dealing with continuous random variables, this equation
+becomes the following:
+
+\begin{align}
+\mathbb{E}\big[X\big] &= \mu \\
+     &= \int_{a}^{b} f(x) dx
+\end{align}
+
+where the possible outcomes of the random variable $X$ are
+continuous in the interval $[a, b]$, and $f(x)$ is the
+probability density function of $X$.
+
+## The variance of a random variable
+We saw that for discrete random variables, population
+variance is defined as the expected squared deviation from
+the mean, as given by the following equation:
+
+The **variance** of a random variable -- called the
+**population variance** is a measure of the spread of the
+random variable. It is a statement of how much the data is
+likely to deviate from the expected value if you sample the
+random variable many times. It is defined as the expected
+value of the squared deviation of the random variable from
+its mean.
+
+For discrete random variables, the variance is given by the
+following equation:
+
+\begin{align}
+\mathbb{Var}\big[X\big] &= \sigma^2 \\
+       &= E((X - \mu)^2) \\
+       &= \sum_i x_{i}^2 p(X=x_{i}) - \mu^2
+\end{align}
+
+For continuous random variables, this equation becomes the
+following:
+
+\begin{align}
+\mathbb{Var}\big[X\big] &= \sigma^2 \\
+       &= E((X - \mu)^2) \\
+       &= \int_{a}^{b} (x - \mu)^2 f(x) dx
+\end{align}
+
+Computing the expected value and the variance of a
+continuous random variable requires the evauluation of
+integrals. This book will not cover the details of how to
+compute these integrals. Instead, it will be sufficient to
+know that the integral of a function over a given interval
+is the area under the curve of the function over that
+interval. That will be more than enough for our purposes.
