@@ -26,10 +26,12 @@ called an *omnibus* test.
 
 In raw form, the H's look like this:
 
-$\begin{align}
+$$
+\begin{align}
 & H_0: \mu1 = \mu2 = \mu3 \ldots \\
 & H_1: \lnot H_0 \\
-\end{align}$
+\end{align}
+$$
 
 Usually, we have spent time in steps 1 and 3 of our
 hypothesis testing procedure to rewrite our hypotheses such
@@ -47,10 +49,10 @@ The logic of an ANOVA can be understood intuitively as
 follows:
 
 - between-group variation --- how different are group means
-from each other?
+  from each other?
 
 - within-group variation --- how noisy is your data in
-general?
+  general?
 
 If the means are all the same (i.e., $H_0$ is true), then
 between-group and within-group variation will be very

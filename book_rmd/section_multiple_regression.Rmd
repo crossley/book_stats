@@ -58,9 +58,10 @@ y_{i} &= \beta_{0} +
 \boldsymbol{y} &= \boldsymbol{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
 \end{align}
 
-- It's powerful to write these equations in matrix form (the last line above)
-  because it highlights how the two situations are essentially the same.. at
-  least mathematically.
+- It's powerful to write these equations in matrix form (the
+  last line above) because it highlights how the two
+  situations are essentially the same --- at least
+  mathematically.
 
 #### Example:
 

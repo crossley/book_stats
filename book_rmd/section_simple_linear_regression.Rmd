@@ -4,9 +4,10 @@ rm(list=ls())
 
 # Simple linear regression
 
-Simple linear regression models attempt to predict the value of some observed
-outcome random variable $\boldsymbol{Y}$ as a linear function of a predictor
-random variable $\boldsymbol{X}$.
+Simple linear regression models attempt to predict the value
+of some observed outcome random variable $\boldsymbol{Y}$ as
+a linear function of a predictor random variable
+$\boldsymbol{X}$.
 
 For the $i^{th}$ observation, we can write:
 
